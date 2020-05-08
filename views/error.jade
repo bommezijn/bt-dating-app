@@ -1,6 +1,9 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
+  h1= '404 Not Found'
+  a(href='/')
+    img.img-size(src="/images/404.jpg")
+  p= message
+  p= error.status
   pre #{error.stack}
