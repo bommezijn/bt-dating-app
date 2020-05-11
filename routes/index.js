@@ -12,4 +12,6 @@ router.get('/about', function(req, res) {
   router.use(express.static('public'));
 });
 
+/* Route Path to  */
+
 module.exports = router;
