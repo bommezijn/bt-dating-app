@@ -1,0 +1,93 @@
+/* Import rules, Load font from google */
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500");
+* {
+    box-sizing: border-box;
+    /* Removal of inherit margin to fill the whole content */
+    margin: 0;
+    font-family: Poppins, sans-serif;
+
+}
+
+body{
+    background-color: #FFFFF9;
+}
+
+/* Top bar, shows logo and such (if extended) */
+
+header {
+    padding: 0.25em;
+}
+
+header > h1{
+    margin: auto;
+    width: 50%;
+    padding: 0.2em;
+    
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.logo-placeholder {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ffc629;
+}
+
+/* Main content, here the user profiles styled */
+main article{
+    position: relative;
+
+    height: 74vh;
+    max-width: 95vw;
+
+    padding: 1em;
+    margin: auto;
+    border-radius: 1em;
+    /* background-color: #2962ff25; */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+article section{
+    /* width: calc(100% + 1em); */
+    margin: -1em;
+}
+
+section img{
+    /* When -webkit-fill-available used, I have to uncheck it in dev tools and check it back in to have it work?
+        This also happens when you start the dev tool
+        https://caniuse.com/#search=-webkit-fill-available
+    */
+    height: -webkit-fill-available;
+    border-radius: 1em;
+    max-width: 95vw;
+    object-fit: cover;
+}
+
+.card-bottom {
+    color: white;
+    position: absolute;
+    width: 100%;
+    /* height: relative; */
+    padding: calc(100% / 20);
+    bottom: 1em;
+    background-image: linear-gradient(transparent, rgba(0,0,0,0.3));
+    border-radius: 0 0 1em 1em;
+}
+
+@media only screen and (max-width: 23.625em) {
+    body{
+        background-color: white;
+    }
+}
+
+@media only screen and (min-width: 23.625em) {
+    body{
+        background-color: #00000025;
+    }
+}
+
+@media only screen and (min-width: 47.5em) {
+    body{
+        background-color: green;
+    }
+}
