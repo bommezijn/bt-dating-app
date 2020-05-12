@@ -1,5 +1,6 @@
 /* Import rules, Load font from google */
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500");
+
 * {
     box-sizing: border-box;
     /* Removal of inherit margin to fill the whole content */
@@ -8,7 +9,7 @@
 
 }
 
-body{
+body {
     background-color: #FFFFF9;
 }
 
@@ -18,11 +19,11 @@ header {
     padding: 0.25em;
 }
 
-header > h1{
+header>h1 {
     margin: auto;
     width: 50%;
     padding: 0.2em;
-    
+
     text-align: center;
     font-size: 1.8em;
 }
@@ -34,8 +35,9 @@ header > h1{
     color: #ffaf64;
 }
 
+
 /* Main content, here the user profiles styled */
-main article{
+main article {
     position: relative;
 
     height: 74vh;
@@ -43,25 +45,29 @@ main article{
 
     padding: 1em;
     margin: auto;
+
     border-radius: 1em;
-    /* background-color: #2962ff25; */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-article section{
+article section {
     /* width: calc(100% + 1em); */
     margin: -1em;
 }
 
-section img{
+section img {
     /* When -webkit-fill-available used, I have to uncheck it in dev tools and check it back in to have it work?
         This also happens when you start the dev tool
         https://caniuse.com/#search=-webkit-fill-available
     */
     height: -webkit-fill-available;
     border-radius: 1em;
-    max-width: 65vw;
+    max-width: 95vw;
     object-fit: cover;
+}
+
+section img {
+    max-width: 95vw;
 }
 
 .card-bottom {
@@ -71,28 +77,51 @@ section img{
     /* height: relative; */
     padding: calc(100% / 20);
     bottom: 1em;
-    background-image: linear-gradient(transparent, rgba(0,0,0,0.3));
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
     border-radius: 0 0 1em 1em;
 }
 
+/* Media queries to change the view based on device. */
+
 @media only screen and (max-width: 23.625em) {
-    body{
+    body {
         background-color: white;
     }
 
+    /* section img {
+        max-width: 95vw;
+    } */
+
 }
 
+/* Also affects the iPhone 6/7/8 plus models */
 @media only screen and (min-width: 23.625em) {
-    body{
+    body {
         background-color: #ffd664;
     }
+
     .card {
         max-width: 65vw;
     }
+
+    .card-top > img {
+        width: 65vw;
+    }
+}
+
+@media only screen and(min-width: 35em) {
+
+    /* .card {
+        width: 65em;
+    }
+
+    .card-bottom {
+        width: 65vw;
+    } */
 }
 
 @media only screen and (min-width: 47.5em) {
-    body{
+    body {
         background-color: #FFFFF9;
     }
 
