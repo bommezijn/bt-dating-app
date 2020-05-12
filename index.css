@@ -30,7 +30,8 @@ header > h1{
 .logo-placeholder {
     text-transform: uppercase;
     font-weight: bold;
-    color: #ffc629;
+    /* color: #ffc629; */
+    color: #ffaf64;
 }
 
 /* Main content, here the user profiles styled */
@@ -59,7 +60,7 @@ section img{
     */
     height: -webkit-fill-available;
     border-radius: 1em;
-    max-width: 95vw;
+    max-width: 65vw;
     object-fit: cover;
 }
 
@@ -78,16 +79,24 @@ section img{
     body{
         background-color: white;
     }
+
 }
 
 @media only screen and (min-width: 23.625em) {
     body{
-        background-color: #00000025;
+        background-color: #ffd664;
+    }
+    .card {
+        max-width: 65vw;
     }
 }
 
 @media only screen and (min-width: 47.5em) {
     body{
-        background-color: green;
+        background-color: #FFFFF9;
+    }
+
+    .card {
+        max-width: 65vw;
     }
 }
