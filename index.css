@@ -1,6 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500");
 body {
     background-color: #ffcc00;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Poppins, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
