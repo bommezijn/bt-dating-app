@@ -33,7 +33,8 @@
     "http-errors": "^1.7.3",
     "jade": "^1.11.0",
     "morgan": "^1.10.0",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "ejs": "latest"
   },
   "devDependencies": {
     "lodash": "^4.17.15"
