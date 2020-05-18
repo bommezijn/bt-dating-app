@@ -22,10 +22,9 @@ router.get('/about', function (req, res) {
   router.use(express.static('public'));
 });
 
-router.get('/sis', (req, res) => {
-  res.writeHead(200, {'Content-Type': 'image/jpg'});
+router.get('/routePath', (req, res) => {
+  router.use(express.static('public'));
   res.sendFile('/public/images/sister.jpg');
-  res.end("CACHE MANIFEST");
 });
 
 /* Sending files based on the query they enter in the addressbar */
