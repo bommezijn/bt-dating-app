@@ -22,14 +22,6 @@ router.get('/about', function (req, res) {
   router.use(express.static('public'));
 });
 
-// Query example. Using type and routing to send the user who visit this link to a vid.
-// router.get('/sister', (req, res) => {
-//   router.use(express.static('public/videos'));
-//   res.sendFile('/twerk.mp4');
-//   res.get('Content-Type');
-//   res.type('png');
-// });
-
 router.get('/sis', (req, res) => {
   res.writeHead(200, {'Content-Type': 'image/jpg'});
   res.sendFile('/public/images/sister.jpg');
