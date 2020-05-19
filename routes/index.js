@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 
 // PUG VARIANT
 /* GET home page. */
@@ -22,10 +23,10 @@ router.get('/about', function (req, res) {
   router.use(express.static('public'));
 });
 
-router.get('/routePath', (req, res) => {
-  router.use(express.static('public'));
-  res.sendFile('/public/images/sister.jpg');
+router.get('/imagefile', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/images/babe.jpg'));
 });
+
 
 /* Sending files based on the query they enter in the addressbar */
 router.get('/images/:fileName', function (req, res, next) {
