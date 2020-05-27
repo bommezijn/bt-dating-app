@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 
+const dataFile = require('../public/data/data.json');
+
 router.get('/', (req, res) => {
   res.render('index', {
     title: 'my life',
@@ -21,52 +23,9 @@ router.get('/about', function(req, res) {
 
 /* GET filter page */
 router.get('/filter', function(req, res) {
-  let userData = [
-    {
-      name: 'Nathan',
-      age: 23,
-      gender: 'male',
-      latitude: 52.1924,
-      longitude: 5.39376,
-      preferences: {
-        sexPref: 'female',
-        minAge: 20,
-        maxAge: 28,
-        movieInterest: [
-          'action',
-          'adventure',
-          'animation',
-          'comedy',
-          'fantasy',
-          'thriller',
-          'sci-fi',
-          'horror'
-        ]
-      },
-    },
-    {
-      name: 'Nadine',
-      age: 23,
-      gender: 'female',
-      latitude: 52.1924,
-      longitude: 5.39376,
-      preferences: {
-        sexPref: 'other',
-        minAge: 20,
-        maxAge: 25,
-        movieInterest: [
-          'adventure',
-          'animation',
-          'comedy',
-          'drama',
-          'fantasy',
-          'romance',
-        ]
-      },
-    }];
   res.render('filter', {
     title: 'filter',
-    filterData: userData,
+    filterData: dataFile.users,
   });
 });
 
