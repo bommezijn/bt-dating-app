@@ -1,0 +1,11 @@
+
+        <p><%= user.name %> </p>
+        <p><%= user.age %> </p>
+        <p><%= user.gender %> </p>
+        <ul>
+            <% user.forEach(person => { %>
+                <li>
+                    <%= user.preference %>
+                </li>
+           <% }); %>
+        </ul>
