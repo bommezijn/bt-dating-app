@@ -21,7 +21,11 @@ router.get('/about', function(req, res) {
   router.use(express.static('public'));
 });
 
-/* GET filter page */
+/* GET filter page
+  Use GEOLIB & HTML geoloc API to populate and calc distance between user
+  https://www.npmjs.com/package/geolib
+  !! Currently importing data from JSON and loop through the users.
+*/
 router.get('/filter', function(req, res) {
   res.render('filter', {
     title: 'filter',
@@ -29,9 +33,7 @@ router.get('/filter', function(req, res) {
   });
 });
 
-/* Use GEOLIB & HTML geoloc API to populate and calc distance between user
-  https://www.npmjs.com/package/geolib
-  */
+
 
 
 router.get('/imagefile', (req, res) => {
@@ -40,7 +42,7 @@ router.get('/imagefile', (req, res) => {
 
 
 /* Sending files based on the query they enter in the addressbar */
-router.get('/images/:fileName', function(req, res, next) {
+router.get('/images/:fileName', function (req, res, next) {
   let options = {
     root: path.join(__dirname, 'public')
   };

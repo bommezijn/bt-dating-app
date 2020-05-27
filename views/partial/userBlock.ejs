@@ -1,10 +1,10 @@
-
-<p><%= user.name %> </p>
-<p><%= user.age %> </p>
-<p><%= user.gender %> </p>
-<p><%= user.preferences.minAge %> </p>
-<ul>
-    <% user.preferences.forEach(function (params) { %>
-        <li><%= params %> </li>
-    <% }); %>
-</ul>
+<!-- Thanks to @realappie for suggesties Object.entries -->
+<% Object.entries(user).forEach(([key, value]) => { %>
+    <p><%= key %>: <%= value %> </p>
+    <% }) %>
+    <ul>
+        <% Object.entries(user.preferences).forEach(([key, value]) => { %>
+            <li><b><%= [value] %> </b></li>
+        <% }) %>
+    </ul>
+    

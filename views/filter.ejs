@@ -1,17 +1,17 @@
 <%- include('partial/head.ejs') %>
 
 <body>
-    <h1><%= title %></h1>
-    <ul>
-      <li><a href="/about">about</a></li>
-      <li><a href="/">home</a></li>
-    </ul>
-    <% filterData.forEach(function(user) { %>
+  <h1><%= title %></h1>
+  <ul>
+    <li><a href="/about">about</a></li>
+    <li><a href="/">home</a></li>
+  </ul>
+  <% filterData.forEach(function(user) { %>
 
-      <%- include('partial/userBlock', {user: user}) %> 
-  <% }); %> 
+  <%- include('partial/userBlock', {user: user}) %>
+  <% }); %>
   <%- include('partial/form.ejs') %>
-    <%- include('partial/footer.ejs') %>
+  <%- include('partial/footer.ejs') %>
 </body>
 
 </html>
