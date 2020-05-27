@@ -1,6 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 50px;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+section {
+  padding: 0px;
+  background-color: #ffcc0020;
 }
 
 a {
@@ -9,4 +19,12 @@ a {
 
 .img-size {
   width: 90vw;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 95%;
+  color: black;
 }
