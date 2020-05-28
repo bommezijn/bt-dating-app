@@ -26,9 +26,17 @@ router.get('/about', (req, res) => {
  *  */
 router.route('/feature')
     .get(function(req, res, next) {
+      const minAge = req.body.minAge;
+      const maxAge = req.body.maxAge;
+      const distance = req.body.distance;
+      const sexPref = req.body.sexPref;
       res.render('feature', {
         title: 'feature',
         filterData: data,
+        minAge: minAge,
+        maxAge: maxAge,
+        distance: distance,
+        sexPref: sexPref,
       });
     })
     .post(function(req, res, next) {
@@ -37,12 +45,14 @@ router.route('/feature')
       const distance = req.body.distance;
       const sexPref = req.body.sexPref;
       res.render('feature', {
+        title: 'sent Data',
         minAge: minAge,
         maxAge: maxAge,
         distance: distance,
         sexPref: sexPref,
       });
     });
+
 
 // ASSIGNMENTS FROM CLASS
 /* Send img of girl when visiting /imagefile */
