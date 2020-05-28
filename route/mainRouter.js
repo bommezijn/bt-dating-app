@@ -25,20 +25,25 @@ router.get('/about', (req, res) => {
  * @source https://expressjs.com/en/4x/api.html#router
  *  */
 router.get('/feature', (req, res, next) => {
+    const minAge = req.body.minAge;
+    const maxAge = req.body.maxAge;
+    const distance = req.body.distance;
+    const sexPref = req.body.sexPref;
   res.render('feature', {
     title: 'prefences',
     filterData: data.users,
-
-  });
+    minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref,
+});
 });
 
 router.post('/feature', (req, res, next) => {
-  const minAge = req.body.minAge;
-  const maxAge = req.body.maxAge;
-  const distance = req.body.distance;
-  const sexPref = req.body.sexPref;
-  res.render('feature', {
-    title: 'sent Data',
+    const minAge = req.body.minAge;
+    const maxAge = req.body.maxAge;
+    const distance = req.body.distance;
+    const sexPref = req.body.sexPref;
+    res.render('feature', {
+        title: 'sent Data',
+        filterData: data.users,
     minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref,
   });
 });

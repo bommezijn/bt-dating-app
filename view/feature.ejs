@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('partial/header.ejs')  %>
+<%- include('partial/header.ejs')  %>
 
 <body>
-    <%- include('partial/nav.ejs') %>
-    <main class="container">
-        <h1><%= title %> </h1>
-        <%- include('partial/form.ejs') %>
-        <%- include('partial/footer.ejs')  %>
-      </main>
+  <%- include('partial/nav.ejs') %>
+  <main class="container">
+    <h1><%= title %> </h1>
+    <%- include('partial/test.ejs', {minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref,
+    })  %>
+    <%- include('partial/form.ejs') %>
+    <% filterData.forEach(function(user) { %>
+        <article class="card">
+            <%- include('partial/userBlock', {user: user}) %>
+        </article>
+        <% }); %>
+    </main>
+    <%- include('partial/footer.ejs')  %>
 </body>
+
 </html>
