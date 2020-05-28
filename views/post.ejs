@@ -1,0 +1,17 @@
+<%- include('partial/head.ejs') %>
+<link rel='stylesheet' href='/stylesheets/card.css' />
+
+<body>
+  <h1><%= title %></h1>
+  <ul>
+    <li><a href="/about">about</a></li>
+    <li><a href="/">home</a></li>
+  </ul>
+  <p><%= minAge %> </p>
+  <p><%= maxAge %> </p>
+  <p><%= distance %> </p>
+  <p><%= sexPref %> </p>
+  <%- include('partial/footer.ejs') %>
+</body>
+
+</html>

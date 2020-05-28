@@ -2,11 +2,10 @@
   "name": "bt-dating-app",
   "version": "1.0.0",
   "description": "Block Tech Dating App course Repo (Tech4)",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "devstart": "nodemon ./bin/www && echo \"Open at localhost:3000\"",
-    "start": "node index.js"
+    "devstart": "nodemon ./bin/www",
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -20,7 +19,7 @@
     "Back-End"
   ],
   "author": "Nathan Bommezijn",
-  "license": "ISC",
+"license": "MIT",
   "bugs": {
     "url": "https://github.com/dewarian/bt-dating-app/issues"
   },

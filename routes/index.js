@@ -3,7 +3,6 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 const path = require('path');
-
 const dataFile = require('../public/data/data.json');
 
 router.get('/', (req, res) => {
@@ -33,11 +32,24 @@ router.get('/filter', function(req, res) {
   });
 });
 
+/*
+  When sending data, /URL should match current URL + Form action.
+  req.body.NAMEINPUT
+  and render it in a new page called post
+ */
+router.post('/filter', function(req, res) {
+  const minAge = req.body.minAge;
+  const maxAge = req.body.maxAge;
+  const distance = req.body.distance;
+  const sexPref = req.body.sexPref;
+  res.render('post', {
+    title: 'sent Data', minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref
+  });
+});
+
 router.get('/imagefile', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/images/babe.jpg'));
 });
-
-
 /* Sending files based on the query they enter in the addressbar */
 router.get('/images/:fileName', function(req, res, next) {
   let options = {
