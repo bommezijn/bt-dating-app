@@ -1,4 +1,5 @@
 <%- include('partial/head.ejs') %>
+<link rel='stylesheet' href='/stylesheets/card.css' />
 
 <body>
   <h1><%= title %></h1>
@@ -6,11 +7,12 @@
     <li><a href="/about">about</a></li>
     <li><a href="/">home</a></li>
   </ul>
-  <% filterData.forEach(function(user) { %>
-
-  <%- include('partial/userBlock', {user: user}) %>
-  <% }); %>
   <%- include('partial/form.ejs') %>
+    <% filterData.forEach(function(user) { %>
+    <article class="card">
+      <%- include('partial/userBlock', {user: user}) %>
+    </article>
+    <% }); %>
   <%- include('partial/footer.ejs') %>
 </body>
 

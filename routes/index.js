@@ -33,9 +33,6 @@ router.get('/filter', function(req, res) {
   });
 });
 
-
-
-
 router.get('/imagefile', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/images/babe.jpg'));
 });

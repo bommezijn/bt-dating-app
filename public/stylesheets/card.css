@@ -1,0 +1,13 @@
+.card {
+    overflow: hidden;
+    background-color: #FFCC00;
+    height: 25em;
+    width: 25em;
+    border: gray 2px solid;
+    margin: 20px 0;
+padding: 10px;
+}
+
+.preferences {
+    display: none;
+}
