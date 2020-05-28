@@ -24,35 +24,30 @@ router.get('/about', (req, res) => {
 /**
  * @source https://expressjs.com/en/4x/api.html#router
  *  */
-router.route('/feature')
-    .get(function(req, res, next) {
-      const minAge = req.body.minAge;
-      const maxAge = req.body.maxAge;
-      const distance = req.body.distance;
-      const sexPref = req.body.sexPref;
-      res.render('feature', {
-        title: 'feature',
-        filterData: data,
-        minAge: minAge,
-        maxAge: maxAge,
-        distance: distance,
-        sexPref: sexPref,
-      });
-    })
-    .post(function(req, res, next) {
-      const minAge = req.body.minAge;
-      const maxAge = req.body.maxAge;
-      const distance = req.body.distance;
-      const sexPref = req.body.sexPref;
-      res.render('feature', {
-        title: 'sent Data',
-        minAge: minAge,
-        maxAge: maxAge,
-        distance: distance,
-        sexPref: sexPref,
-      });
-    });
 
+router.get('/feature', (req, res, next) => {
+    const minAge = req.body.minAge;
+    const maxAge = req.body.maxAge;
+    const distance = req.body.distance;
+    const sexPref = req.body.sexPref;
+  res.render('feature', {
+    title: 'prefences',
+    filterData: data.users,
+    minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref,
+
+  });
+});
+
+router.post('/feature', (req, res, next) => {
+  const minAge = req.body.minAge;
+  const maxAge = req.body.maxAge;
+  const distance = req.body.distance;
+  const sexPref = req.body.sexPref;
+  res.render('feature', {
+    title: 'sent Data',
+    minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref,
+  });
+});
 
 // ASSIGNMENTS FROM CLASS
 /* Send img of girl when visiting /imagefile */
