@@ -39,7 +39,7 @@ router.get('/imagefile', (req, res) => {
 
 
 /* Sending files based on the query they enter in the addressbar */
-router.get('/images/:fileName', function (req, res, next) {
+router.get('/images/:fileName', function(req, res, next) {
   let options = {
     root: path.join(__dirname, 'public')
   };
