@@ -24,6 +24,6 @@ $ npm run devstart
 ## Conventions
 
 This project uses EJS templating and Google ESLinting.
-For more in-depth information see [wiki](/wiki). 
+For more in-depth information see [wiki](https://github.com/dewarian/bt-dating-app/wiki). 
 # Static page
 https://dewarian.github.io/bt-dating-app/
