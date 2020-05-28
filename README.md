@@ -1,9 +1,29 @@
 # bt-dating-app
+The dating app from CMD Blok Tech. Find a match for everyone.  
+Feature is about setting the preferences to see who matches your movie preferences/
 
-The dating app from CMD Blok Tech. Find a match for everyone.
+# Installation
 
+To be able to run or use this project you are **required** to have NPM and NodeJS installed.
+
+## Clone the repo to your machine.
+```
+$ git clone https://github.com/dewarian/bt-dating-app.git
+```
+## Install the dependencies to be able to run or develop.
+```
+$ npm install
+```
+## Start the server.
+```
+$ npm run devstart
+```
+
+**and Voila, you should have a working copy of this repo.**
+
+## Conventions
+
+This project uses EJS templating and Google ESLinting.
+For more in-depth information see [wiki](/wiki). 
 # Static page
 https://dewarian.github.io/bt-dating-app/
-
-# Also don't forget to fill in the backend notes
-ran `npx express-generator` as opposed to installing it as a dependency because I only need it once to create a skeleton.
