@@ -1,4 +1,4 @@
-<form action="/filter" method="POST" oninput="displayMinAge.value = minAge.valueAsNumber; displayMaxAge.value = maxAge.valueAsNumber; setDistance.value = distance.valueAsNumber">
+<form action="/feature" method="POST" oninput="displayMinAge.value = minAge.valueAsNumber; displayMaxAge.value = maxAge.valueAsNumber; setDistance.value = distance.valueAsNumber">
   <fieldset>
     <legend>Preferences</legend>
     <fieldset>
@@ -23,7 +23,7 @@
       <legend>Sexual Preferences</legend>
       <label for="I'm interested in..."></label>
 
-      <input type="radio" name="sexPref" id="female">
+      <input type="radio" name="sexPref" id="female" checked>
       <label for="female">Female</label><br>
 
       <input type="radio" name="sexPref" id="male">

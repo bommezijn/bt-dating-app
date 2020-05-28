@@ -4,8 +4,10 @@
 */
 const express = require('express');
 /* mount router-level middleware  */
+// eslint-disable-next-line new-cap
 const router = express.Router();
-const data = require('../public/data/users');
+const path = require('path');
+const data = require(path.join(__dirname, '../public/data/data.json'));
 
 router.get('/', (req, res) => {
   res.render('index', {
@@ -15,9 +17,36 @@ router.get('/', (req, res) => {
 
 router.get('/about', (req, res) => {
   res.render('about', {
-    title: 'About this app',
+    title: 'A$$',
   });
 });
+
+/**
+ * @source https://expressjs.com/en/4x/api.html#router
+ *  */
+router.use(express.static(__dirname + '/public'));
+
+router.route('/feature')
+    .get(function(req, res, next) {
+      res.render('feature', {
+        title: 'feature',
+      // filterData: data,
+      });
+    })
+    .post(function(req, res, next) {
+      const minAge = req.body.minAge;
+      const maxAge = req.body.maxAge;
+      const distance = req.body.distance;
+      const sexPref = req.body.sexPref;
+      res.render('feature', {
+        title: 'feature',
+        Preftitle: 'current preferences',
+        minAge: minAge,
+        maxAge: maxAge,
+        distance: distance,
+        sexPref: typeof(sexPref),
+      });
+    });
 
 // ASSIGNMENTS FROM CLASS
 /* Send img of girl when visiting /imagefile */
