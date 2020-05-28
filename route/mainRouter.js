@@ -7,7 +7,7 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 const path = require('path');
-const data = require(path.join(__dirname, '../public/data/data.json'));
+const data = require(path.join(__dirname, '../public/data/data'));
 
 router.get('/', (req, res) => {
   res.render('index', {
@@ -24,13 +24,11 @@ router.get('/about', (req, res) => {
 /**
  * @source https://expressjs.com/en/4x/api.html#router
  *  */
-router.use(express.static(__dirname + '/public'));
-
 router.route('/feature')
     .get(function(req, res, next) {
       res.render('feature', {
         title: 'feature',
-      // filterData: data,
+        filterData: data,
       });
     })
     .post(function(req, res, next) {
@@ -39,12 +37,10 @@ router.route('/feature')
       const distance = req.body.distance;
       const sexPref = req.body.sexPref;
       res.render('feature', {
-        title: 'feature',
-        Preftitle: 'current preferences',
         minAge: minAge,
         maxAge: maxAge,
         distance: distance,
-        sexPref: typeof(sexPref),
+        sexPref: sexPref,
       });
     });
 
