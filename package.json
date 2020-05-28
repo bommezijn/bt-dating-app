@@ -2,10 +2,9 @@
   "name": "bt-dating-app",
   "version": "1.0.0",
   "description": "Block Tech Dating App course Repo (Tech4)",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "devstart": "nodemon ./bin/www",
-    "start": "node ./bin/www"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -16,26 +15,27 @@
     "DatingApp",
     "CMD",
     "Front-end",
-    "Back-End"
+    "Back-End",
+    "Progressive Enhancement"
   ],
   "author": "Nathan Bommezijn",
-"license": "MIT",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dewarian/bt-dating-app/issues"
   },
   "homepage": "https://github.com/dewarian/bt-dating-app#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.5",
-    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.3",
     "express": "^4.17.1",
-    "http-errors": "^1.7.3",
-    "morgan": "^1.10.0"
+    "express-session": "^1.17.1",
+    "mongodb": "^3.5.8",
+    "mongoose": "^5.9.16"
   },
   "devDependencies": {
     "eslint": "^7.1.0",
     "eslint-config-google": "^0.14.0",
-    "lodash": "^4.17.15"
+    "nodemon": "^2.0.4"
   }
 }

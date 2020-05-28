@@ -6,14 +6,18 @@ module.exports = {
     'node': true,
   },
   'extends': [
-    'google',
+    'eslint:recommended', 'google',
   ],
   'globals': {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly',
   },
   'parserOptions': {
-    'ecmaVersion': 11,
+    'ecmaVersion': 6,
+    'sourceType': 'module',
+    'ecmaFeatures': {
+      'jsx': true,
+    },
   },
   'rules': {
   },
