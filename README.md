@@ -20,6 +20,13 @@ $ npm install
 ## Create an mongodb account + Atlas
 MongoDB docs have a clear step by step tutorial how to connect your MongoDB Atlas to a Node application.  
 [Follow the tutorial and come back](https://docs.mongodb.com/guides/server/drivers/)
+
+When done, add actual values to the .env file
+```
+MONGO_USER=YOURDBUSERNAME
+MONGO_PASS=YOURDBUSERNAME
+MONGO_DOMAIN=YOUR_DB_DOMAIN
+```
 * rename `'.env.example'` to `'.env'` and move inside it.
 * Enter your database username, password and domain in `MONGO_USER`, `MONGO_PASS` and `MONGO_DOMAIN` respectively.  
 
