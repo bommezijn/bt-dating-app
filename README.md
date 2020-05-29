@@ -1,4 +1,6 @@
 # bt-dating-app
+> Sort your future matches by movie genre 😉
+
 The dating app from CMD Blok Tech. Find a match for everyone.  
 Feature is about setting the preferences to see who matches your movie preferences/
 
@@ -27,3 +29,7 @@ This project uses EJS templating and Google ESLinting.
 For more in-depth information see [wiki](https://github.com/dewarian/bt-dating-app/wiki). 
 # Static page
 https://dewarian.github.io/bt-dating-app/
+
+## License
+
+MIT
