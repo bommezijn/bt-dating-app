@@ -8,7 +8,7 @@ router
         name: req.body.name,
       });
     })
-    .post('partial/addUser', (req, res, next) => {
+    .post('addUser', (req, res, next) => {
       const nameUser = req.body.name;
       const ageUser = req.body.age;
       const genderUser = req.body.gender;
