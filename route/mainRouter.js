@@ -57,17 +57,6 @@ router.get('/imagefile', (req, res) => {
 });
 // ENDOF ASSIGNMENTS FROM CLASS
 
-
-/**
- * @title addUser function
- * Declared before line110 to stay clear of the TDZ
- * @param {*} req
- * @param {*} res
- */
-router.get('/add', (req, res, next) => {
-  res.render('partial/addUser', {name: req.body.name});
-});
-
 /**
  * route for when there is no page found.
  * @source https://stackoverflow.com/questions/6528876/how-to-redirect-404-errors-to-a-page-in-expressjs

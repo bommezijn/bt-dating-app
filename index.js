@@ -95,9 +95,9 @@ app.use(bodyParser.json());
 const mainRouter = require('./route/mainRouter');
 const addUser = require('./route/addUser');
 /* Express use mainRouter for index */
-app.use('/', mainRouter);
-app.use('/add', addUser);
 
+app.use('/add', addUser);
+app.use('/', mainRouter);
 
 // Express listens to port 3030 and on start print link
 app.listen(3030, () => console.log(`Dating app listening at http://localhost:${port}`));
