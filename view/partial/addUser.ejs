@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('header.ejs', {title: 'add User'}) %>
+<form action="/user" method="post">
+  <fieldset>
+    <legend>Your info</legend>
+    <label for="">name</label>
+    <input type="text" name="name" id="name"><br>
+    <label for="">age</label>
+    <input type="number" name="name" id="age">
+    <br>
+    <label for="">Gender:</label>
+    <input type="radio" name="gender" id="male">
+    <label for="male">Male</label>
+    <input type="radio" name="gender" id="female">
+    <label for="female">female</label>
+    <input type="radio" name="gender" id="other">
+    <label for="other">other</label>
+    <br>
+    <label for="">Latitude</label>
+    <input type="number" name="locationLat" id="Latitude" step="any">
+    <label for="">Longitude</label>
+    <input type="number" name="locationLong" id="Longitude" step="any">
+  </fieldset>
+  <button type="submit">Add User</button>
+</form>
+<%- include('footer.ejs') %>
+
+</html>

@@ -7,6 +7,8 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 const path = require('path');
+const bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({extended: false}));
 const data = require(path.join(__dirname, '../public/data/data'));
 
 router.get('/', (req, res) => {
@@ -54,6 +56,17 @@ router.get('/imagefile', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/img/file.jpg'));
 });
 // ENDOF ASSIGNMENTS FROM CLASS
+
+
+/**
+ * @title addUser function
+ * Declared before line110 to stay clear of the TDZ
+ * @param {*} req
+ * @param {*} res
+ */
+router.get('/add', (req, res, next) => {
+  res.render('partial/addUser', {name: req.body.name});
+});
 
 /**
  * route for when there is no page found.

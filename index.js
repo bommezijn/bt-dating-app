@@ -81,9 +81,6 @@ async function run() {
 }
 run().catch(console.dir);
 
-/* Import mainRouter for application */
-const mainRouter = require('./route/mainRouter');
-
 /* Setup express for EJS */
 app.set('view engine', 'ejs');
 // Set views folder
@@ -91,13 +88,16 @@ app.set('views', path.join(__dirname, 'view'));
 
 // Allow app to get static files from public
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(bodyParser.urlencoded({  extended: true }));
 app.use(bodyParser.json());
 
+/* Import mainRouter && addUser for application */
+const mainRouter = require('./route/mainRouter');
+const addUser = require('./route/addUser');
 /* Express use mainRouter for index */
 app.use('/', mainRouter);
+app.use('/add', addUser);
+
 
 // Express listens to port 3030 and on start print link
 app.listen(3030, () => console.log(`Dating app listening at http://localhost:${port}`));
