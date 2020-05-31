@@ -28,7 +28,9 @@ const port = 3030;
  * @description Enables mongodb and declaring mongoDB variables
  * @constant URL dotenvExpand variable, declare your userdata there
  */
-const {  MongoClient } = require("mongodb");
+const { MongoClient } = require("mongodb");
+const { Conn } = require('./route/mongoConnection');
+Conn.connectionToMongo()
 
 // Replace the following with your Atlas connection string
 const url = process.env.M_URL;

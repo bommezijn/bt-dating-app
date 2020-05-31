@@ -2,6 +2,7 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
+const dbName = 'dateapp';
 /* The fix for this was putting mainrouter on the end
   - downright removing the same router from mainRouter
   - adding correct routing of creating user
@@ -24,6 +25,20 @@ router.post('/user', (req, res, next) => {
   const genderUser = req.body.gender;
   const latitudeUser = req.body.locationLat;
   const longitudeUser = req.body.locationLang;
+
+  async function sendUserFormData() {
+    try{
+      await client.connect();
+      console.log(`Connected to ${process.env.MONGO_DOMAIN} from \x1b[33mAddUser.js\x1b[0m`);
+      const db = client.db(dbName)
+    }
+    catch (err) {
+      console.log(err.stack);
+    } finally {
+      await client.close();
+    }
+  }
+
   // console.log(`name: ${req.body.name}, gender: ${genderUser.toSt}`);
   /**
    * @title Console.log coloring
