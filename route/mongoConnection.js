@@ -5,25 +5,27 @@
  * @author Nathan Bommezijn
  */
 
-const MongoClient = require('mongodb').MongoClient
+const {  MongoClient } = require('mongodb');
+
 
 /* Disabled ESLINT for this class cuz its trippin */
 class Conn {
   static async connectionToMongo() {
+    try {
       if (this.db) return this.db
-      this.db = await MongoClient.connect(this.url, this.options)
-      console.log("Connected correctly to mongo server:", process.env.MONGO_DOMAIN);
-    return this.db
+      this.db = await MongoClient.connect(process.env.M_URL, { useUnifiedTopology: true, useNewUrlParser: true })
+        return this.db
+      // return console.log("inside mongoConn constructor:", process.env.MONGO_DOMAIN);
+
+    } catch (err) {
+      console.log(err.stack);
+    } finally {
+      await MongoClient(this.url, this.options).close()
+    }
   }
+
 }
+
 
 const db = null; //In router you should declare the dbname
-const options = {
-  useUnifiedTopology: true,
-  useNewUrlParser:    true,
-};
-const url = encodeURI(process.env.M_URL);
-
-module.exports = {
-  Conn
-}
+module.exports = { Conn }

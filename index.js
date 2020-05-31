@@ -28,60 +28,8 @@ const port = 3030;
  * @description Enables mongodb and declaring mongoDB variables
  * @constant URL dotenvExpand variable, declare your userdata there
  */
-const { MongoClient } = require("mongodb");
-const { Conn } = require('./route/mongoConnection');
-Conn.connectionToMongo()
-
-// Replace the following with your Atlas connection string
-const url = process.env.M_URL;
-const client = new MongoClient(url, {  useUnifiedTopology: true });
-const dbName = 'dateapp';
-
-async function run() {
-  try {
-    await client.connect();
-    console.log("Connected correctly to mongo server:", process.env.MONGO_DOMAIN);
-    // Connected? Nice, do create/connect to db
-    const db = client.db(dbName);
-
-    // Use the collection 'users'
-    const col = db.collection('users');
-
-    // Construct a document of user
-    let userDocument = {
-        "name": "Nathan",
-        "age": 23,
-        "gender": "male",
-        "latitude": 52.1924,
-        "longitude": 5.39376,
-        "preferences": {
-            "sexPref": "female",
-            "minAge": 20,
-            "maxAge": 28,
-            "movieInterest": [
-            "action",
-            "adventure",
-            "animation",
-            "comedy",
-            "fantasy",
-            "thriller",
-            "sci-fi",
-            "horror"
-            ]
-        }
-    }
-    // Commented out otherwise my db gonna be filled with the example data
-    // const insertSingle = await col.insertOne(userDocument);
-    // const findSingleDocument = await col.findOne();
-    // console.log(findSingleDocument);
-
-  } catch (err) {
-    console.log(err.stack);
-  } finally {
-    await client.close();
-  }
-}
-run().catch(console.dir);
+const {Conn} = require('./route/mongoConnection');
+Conn.connectionToMongo();
 
 /* Setup express for EJS */
 app.set('view engine', 'ejs');
@@ -90,7 +38,7 @@ app.set('views', path.join(__dirname, 'view'));
 
 // Allow app to get static files from public
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({  extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 /* Import mainRouter && addUser for application */

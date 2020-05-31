@@ -1,8 +1,10 @@
 const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
+const {
+  Conn,
+} = require('./mongoConnection');
 
-const dbName = 'dateapp';
 /* The fix for this was putting mainrouter on the end
   - downright removing the same router from mainRouter
   - adding correct routing of creating user
@@ -15,7 +17,7 @@ const dbName = 'dateapp';
 router.get('/user', (req, res, next) => {
   console.log('Does it enter?');
   res.render('partial/addUser', {
-    name: req.body.name,
+    name: 'Add a user to database',
   });
 });
 
@@ -25,19 +27,17 @@ router.post('/user', (req, res, next) => {
   const genderUser = req.body.gender;
   const latitudeUser = req.body.locationLat;
   const longitudeUser = req.body.locationLang;
+  console.log(`Gender returns type: \x1b[33m${typeof(genderUser)}, ${genderUser}\x1b[0m`);
 
-  async function sendUserFormData() {
-    try{
-      await client.connect();
-      console.log(`Connected to ${process.env.MONGO_DOMAIN} from \x1b[33mAddUser.js\x1b[0m`);
-      const db = client.db(dbName)
-    }
-    catch (err) {
-      console.log(err.stack);
-    } finally {
-      await client.close();
-    }
-  }
+  Conn.db.collection('users').insertOne({
+    'name': nameUser,
+    'age': ageUser,
+    'gender': genderUser,
+    'latitude': latitudeUser,
+    'longitude': longitudeUser,
+  })
+      .then((users) => res.json({users: users}))
+      .catch((err) => res.json({error: err}));
 
   // console.log(`name: ${req.body.name}, gender: ${genderUser.toSt}`);
   /**
@@ -45,8 +45,7 @@ router.post('/user', (req, res, next) => {
    * @description Console log coloring, can be done with ANSI color escaping.
    * @source https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-
    * \x1b[33m = foreground yellow, \x1b[0m = reset instance so the rest isnt yellow either
-     */
-  console.log(`Gender returns type: \x1b[33m${typeof(genderUser)}, ${genderUser}\x1b[0m`);
+   */
   res.render('./partial/user', {
     name: nameUser,
     age: ageUser,
