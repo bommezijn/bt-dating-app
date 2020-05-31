@@ -95,6 +95,8 @@ app.use(bodyParser.json());
 const mainRouter = require('./route/mainRouter');
 const addUser = require('./route/addUser');
 /* Express use mainRouter for index */
+// app.use('/', mainRouter);
+// app.use('add', addUser);
 
 app.use('/add', addUser);
 app.use('/', mainRouter);
