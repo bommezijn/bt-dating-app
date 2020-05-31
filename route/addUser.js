@@ -12,26 +12,33 @@ const router = express.Router();
    */
 
 router.get('/user', (req, res, next) => {
-      console.log('abdel')
-      res.render('partial/addUser', {
-        name: req.body.name,
-      });
-    });
+  console.log('Does it enter?');
+  res.render('partial/addUser', {
+    name: req.body.name,
+  });
+});
 
 router.post('/user', (req, res, next) => {
-
-      const nameUser = req.body.name;
-      const ageUser = req.body.age;
-      const genderUser = req.body.gender;
-      const latitudeUser = req.body.locationLat;
-      const longitudeUser = req.body.locationLang;
-      res.render('./partial/user', {
-        name: nameUser,
-        age: ageUser,
-        gender: genderUser,
-        latitude: latitudeUser,
-        longitude: longitudeUser,
-      });
-    });
+  const nameUser = req.body.name;
+  const ageUser = req.body.age;
+  const genderUser = req.body.gender;
+  const latitudeUser = req.body.locationLat;
+  const longitudeUser = req.body.locationLang;
+  // console.log(`name: ${req.body.name}, gender: ${genderUser.toSt}`);
+  /**
+   * @title Console.log coloring
+   * @description Console log coloring, can be done with ANSI color escaping.
+   * @source https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-
+   * \x1b[33m = foreground yellow, \x1b[0m = reset instance so the rest isnt yellow either
+     */
+  console.log(`Gender returns type: \x1b[33m${typeof(genderUser)}, ${genderUser}\x1b[0m`);
+  res.render('./partial/user', {
+    name: nameUser,
+    age: ageUser,
+    gender: genderUser,
+    latitude: latitudeUser,
+    longitude: longitudeUser,
+  });
+});
 
 module.exports = router;
