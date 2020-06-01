@@ -59,6 +59,17 @@ span:after {
     transform: rotate(-10deg);
 }
 
+.userCard{
+    margin-bottom: 1em;
+    padding: 0.5em;
+    background-color: #fffbeb;
+}
+
+.userCard p{
+    padding: 0;
+    margin: 0;
+}
+
 
 footer{
     /* position: relative; */

@@ -17,6 +17,7 @@ const ObjectId = require('mongodb').ObjectId;
  * @title mongoDB
  * @description NOT MY OWN CODE, after searching for many examples, ended up using this and mostly copying it.
  * It does feel bad, but I want to atleast create and delete.
+ * Sadly now am initializing a new db connection for each route.
  * @source https://dev.to/lenmorld/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
  */
 // << db init >>
@@ -31,7 +32,6 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
 }, function(err) { // failureCallback
   throw (err);
 });
-
 router.get('/user', (req, res, next) => {
   console.log(`Enter add/user`);
   res.render('partial/addUser', {
@@ -78,10 +78,10 @@ router.post('/addUser', (req, res, next) => {
 
 router.get('/findUser/:_id', (req, res, next) => {
   console.log(`Enter add/findUser/${JSON.stringify(req.params)}`);
-  let obj_id = new ObjectId(req.params._id);
+  let objId = new ObjectId(req.params._id);
 
   db.initialize(dbName, collectionName, function(dbCollection) {
-    dbCollection.findOne({_id: obj_id}, (error, result) => {
+    dbCollection.findOne({_id: objId}, (error, result) => {
       console.log(`${JSON.stringify(result)}`);
       if (error) throw error;
       res.json(result);
