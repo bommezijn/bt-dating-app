@@ -23,6 +23,56 @@ const path = require('path');
 const app = express();
 const port = 3030;
 
+/**
+ * @title mongoDB
+ * @description Enables mongoDB and declaring mongoDB variables
+ * @constant URI dotenvExpand variable, declare your userdata there
+ */
+// const {  MongoClient } = require('mongodb');
+// const uri = process.env.M_URL;
+
+// async function instantiateMongo() {
+//   const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+//   try {
+//       await client.connect(); //will return a promise, use await to indicate to wait for further action
+//       await listDatabases(client)
+//   } catch (error) {
+//     console.error(error);
+//   } finally {
+//     await client.close();
+//   }
+  
+// }
+
+// instantiateMongo().catch(console.err);
+
+// async function listDatabases(client){
+//   const databaseList = await client.db().admin().listDatabases();
+//   console.log(`dbs:`);
+//   databaseList.databases.forEach(db => {
+//     console.log(` - ${db.name}`)
+//   });
+// };
+
+const db = require('./db');
+const dbName = 'dateapp';
+const collectionName = 'users';
+
+// << db init >>
+db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
+  // get all items
+  dbCollection.find().toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+  });
+
+  // << db CRUD routes >>
+}, function(err) { // failureCallback
+  throw (err);
+});
+
+
+
 /* Setup express for EJS */
 app.set('view engine', 'ejs');
 // Set views folder

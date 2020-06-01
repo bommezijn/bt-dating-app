@@ -12,7 +12,7 @@ const router = express.Router();
 const db = require('../db');
 const dbName = 'dateapp';
 const collectionName = 'users';
-const ObjectId = require('mongodb').ObjectId;
+
 /**
  * @title mongoDB
  * @description NOT MY OWN CODE, after searching for many examples, ended up using this and mostly copying it.
@@ -25,28 +25,48 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   // get all items
   dbCollection.find().toArray(function(err, result) {
     if (err) throw err;
-    // console.log(result);
+    console.log(result);
   });
 
   // << db CRUD routes >>
 }, function(err) { // failureCallback
   throw (err);
 });
+
+/* const {  MongoClient } = require('mongodb');
+const uri = process.env.M_URL;
+let db = null;
+const client = MongoClient.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+async function instantiateMongo() {
+  try {
+      await client.connect(); //will return a promise, use await to indicate to wait for further action
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await client.close();
+  }
+}
+instantiateMongo().catch(console.err);
+async function createUser(client, newUser){
+  const result = await client.db('dateapp').collection('users').insertOne(newUser);
+  console.log(`New user created with id: ${result.insertedId}`);
+} */
+
 router.get('/user', (req, res, next) => {
-  console.log(`Enter add/user`);
+  console.log('Does it enter?');
   res.render('partial/addUser', {
     name: 'Add a user to database',
   });
 });
 
-router.post('/addUser', (req, res, next) => {
+router.post('/user', (req, res, next) => {
   const userBody = req.body;
   const nameUser = req.body.name;
   const ageUser = req.body.age;
   const genderUser = req.body.gender;
   const latitudeUser = req.body.locationLat;
   const longitudeUser = req.body.locationLang;
-  /**
+    /**
    * @title Console.log coloring
    * @description Console log coloring, can be done with ANSI color escaping.
    * @source https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-
@@ -73,33 +93,6 @@ router.post('/addUser', (req, res, next) => {
     gender: genderUser,
     latitude: latitudeUser,
     longitude: longitudeUser,
-  });
-});
-
-router.get('/findUser/:_id', (req, res, next) => {
-  console.log(`Enter add/findUser/${JSON.stringify(req.params)}`);
-  let objId = new ObjectId(req.params._id);
-
-  db.initialize(dbName, collectionName, function(dbCollection) {
-    dbCollection.findOne({_id: objId}, (error, result) => {
-      console.log(`${JSON.stringify(result)}`);
-      if (error) throw error;
-      res.json(result);
-    });
-  });
-});
-
-router.get('/allUsers', (req, res, next) => {
-  db.initialize(dbName, collectionName, function(dbCollection) {
-    dbCollection.find().toArray((error, result) =>{
-      if (error) throw error;
-      console.log(result);
-      console.log(result.length);
-      // res.json(result);
-      res.render('./partial/user', {
-        allUsers: result,
-      });
-    });
   });
 });
 

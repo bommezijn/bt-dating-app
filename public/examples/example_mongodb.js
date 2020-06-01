@@ -1,5 +1,5 @@
 /**
- * @title mongoDB EXAMPLE FROM MONGODB
+ * @title mongoDB
  * @description Enables mongoDB and declaring mongoDB variables
  * @constant URI dotenvExpand variable, declare your userdata there
  */
@@ -28,8 +28,3 @@ async function listDatabases(client){
     console.log(` - ${db.name}`)
   });
 };
-
-async function createUser(client, newUser){
-  const result = await client.db('dateapp').collection('users').insertOne(newUser);
-  console.log(`New user created with id: ${result.insertedId}`);
-}
