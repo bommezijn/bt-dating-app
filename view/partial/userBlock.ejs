@@ -1,16 +1,17 @@
 <!-- Thanks to @realappie for suggesties Object.entries
     and @sjagoori for what I did wrong -->
 <!-- When I go back to this option, I would filter the data to make it clean -->
-<p></p>
 
-<% Object.entries(user).forEach(([key, value]) => { %>
-    <p class="<%= key %>"><%= value %> </p>
-    <% }) %>
 
+<H3> <%= user.name %>  </H3>
+<p> <%= user.age %>  </p>
+<p> <%= user.latitude %>  </p>
+<p> <%= user.longitude %>  </p>
+<p>Prefers:</p>
     <!-- IF STATEMENT TO SHOW OBJECT OR REMOVE PREFERENCES -->
     <ul>
         <% Object.entries(user.preferences).forEach(([key, value]) => { %>
-        <li><b><%= value %> </b></li>
+        <li><%= value %></li>
         <% }) %>
     </ul>
 
