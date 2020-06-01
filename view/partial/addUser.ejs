@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./header.ejs', {title: 'add User'}) %>
-<h1>wubwubwub</h1>
+<%- include('./nav.ejs') %>
+
 <h1> <%= name %> </h1>
 <form action="./user" method="post">
   <fieldset>
@@ -20,6 +21,10 @@
     <label for="other">other</label>
     <br>
     <label for="">Movie Genres</label><br>
+    <% for( let index = 0; index < result.genre.length; index++ ) { %>
+      <label for="action"><input type="checkbox" name="movieGenre" id="<%= result.genre[index] %> " value="<%= result.genre[index] %> "> <%= result.genre[index] %> </label><br>
+    <% } %>
+<!-- 
       <label for="action"><input type="checkbox" name="movieGenre" id="action" value="action"> Action</label>
       <label for="action"><input type="checkbox" name="movieGenre" id="animation" value="animation"> Animation</label>
       <label for="action"><input type="checkbox" name="movieGenre" id="adventure" value="adventure"> Adventure</label>
@@ -39,7 +44,7 @@
       <label for="action"><input type="checkbox" name="movieGenre" id="war" value="war"> War</label>
       <label for="action"><input type="checkbox" name="movieGenre" id="romance" value="romance"> Romance</label>
       <label for="action"><input type="checkbox" name="movieGenre" id="sciencefiction" value="sciencefiction"> Science Fiction</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="thriller" value="thriller"> Thriller</label>
+      <label for="action"><input type="checkbox" name="movieGenre" id="thriller" value="thriller"> Thriller</label> -->
   </fieldset>
   <button type="submit">Add User</button>
 </form>

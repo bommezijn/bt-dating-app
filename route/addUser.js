@@ -22,21 +22,33 @@ const ObjectId = require('mongodb').ObjectId;
  * @source https://dev.to/lenmorld/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
  */
 // << db init >>
-db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
-  // get all items
-  dbCollection.find().toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-  });
-}, function(err) { // failureCallback
-  throw (err);
-});
+// db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
+//   // get all items
+//   dbCollection.find().toArray(function(err, result) {
+//     if (err) throw err;
+//     console.log(result);
+//   });
+// }, function(err) { // failureCallback
+//   throw (err);
+// });
 
 router.get('/user', (req, res, next) => {
-  console.log('Does it enter?');
-  res.render('partial/addUser', {
-    name: 'Add a user to database',
+  console.log('Does it enter /user?');
+  db.initialize(dbName, 'genres', function(dbCollection) {
+    dbCollection.findOne({num_id: 1}, (error, result) => {
+      console.log(`\x1b[33m!!MUCHO IMPORTANTE ${result.genre}\x1b[0m`);
+      if (error) throw error;
+      // res.json(result);
+      res.render('partial/addUser', {
+        name: 'Add a user to database',
+        result: result,
+      });
+    });
   });
+
+  // res.render('partial/addUser', {
+  //   name: 'Add a user to database',
+  // });
 });
 
 router.post('/user', (req, res, next) => {
@@ -78,7 +90,7 @@ router.post('/user', (req, res, next) => {
 
 router.get('/findUser/:_id', (req, res, next) => {
   console.log(`Enter add/findUser/${JSON.stringify(req.params)}`);
-  let objId = new ObjectId(req.params._id);
+  const objId = new ObjectId(req.params._id);
 
   db.initialize(dbName, collectionName, function(dbCollection) {
     dbCollection.findOne({_id: objId}, (error, result) => {
