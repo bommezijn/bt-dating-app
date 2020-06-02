@@ -2,6 +2,7 @@
 <%- include('./header.ejs', {title: 'User view'}) %>
 <%- include('./nav.ejs') %>
 
+
 <main>
   <h1>user page</h1>
   <% Object.entries(allUsers).forEach(([key, value]) => { %>
@@ -9,5 +10,10 @@
     <p>age: <%= value.age %> </p>
     <p>gender: <%= value.gender %> </p>
     <p>genres: <%= value.movieGenre %> </p>
+    
+    <form action="./allUsers" method="POST">
+    <button id=<%= value._id %>>Delete</button>
+    </form>
   <% }) %>
 </main>
+
