@@ -94,6 +94,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
 
   /* Retrieves all users within collection 'users' */
   router.get('/allUsers', (req, res, next) => {
+    console.log(`route: /AllUsers. Will render: ./partial/user (param allUsers: result)`);
     dbCollection.find().toArray((error, result) => {
       if (error) throw error;
       // console.log(result); //logs all users within user
@@ -110,15 +111,16 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   router.delete('/allUsers/:id', (req, res) => {
     const itemId = new ObjectId(req.params._id);
     console.log('Delete item with id: ', itemId);
-
+    
     dbCollection.remove({_id: itemId}, function(error, result) {
       if (error) throw error;
       // send back entire updated list after successful request
       dbCollection.find().toArray(function(error, result) {
         if (error) throw error;
+        console.log('(INSIDE find(). from delete) Delete item with id: ', itemId);
         res.render('partial/user', {
           name: 'All users',
-          result: result,
+          allUsers: result,
         });
       });
     });
