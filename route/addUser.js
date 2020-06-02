@@ -107,7 +107,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     });
   });
 
-  //DOESNT ENTER THIS PAGE! WHY AND HOW
+  // DOESNT ENTER THIS PAGE! WHY AND HOW
   // 2-6-2020 : Currently when clicking on delete, sends user to /add/allUsers
   router.post('/viewAllUsers/:id', (req, res) => {
     const itemId = new ObjectId(req.params._id);
