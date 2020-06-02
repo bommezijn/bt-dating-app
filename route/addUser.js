@@ -107,29 +107,35 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     });
   });
 
+  // const itemId = {_id: new ObjectId('5ed69d1a8c19ad2c0fdc295f')};
+  // dbCollection.deleteOne(itemId, (err, result) => {
+  //   if (err) throw err;
+  //   console.log('\x1b[33mDelete item with id: \x1b[0m', itemId);
+  //   dbCollection.find().toArray((err, result)=>{
+  //     if (err) throw err;
+  //     console.log(`----------NEW LINE--------- \n ${JSON.stringify(result)}`);
+  //   });
+  // });
+
   // DOESNT ENTER THIS PAGE! WHY AND HOW
   // 2-6-2020 : Currently when clicking on delete, sends user to /add/allUsers
-  router.post('/viewAllUsers/:id', (req, res) => {
-    const itemId = new ObjectId(req.params._id);
-    console.log('Delete item with id: ', itemId);
-
-    dbCollection.deleteOne({
-      _id: itemId,
-    }, function(error, result) {
-      if (error) throw error;
-      // send back entire updated list after successful request
-      dbCollection.find().toArray(function(error, result) {
-        if (error) throw error;
-        console.log('inside delete, delete id:', itemId);
-        res.render('partial/user', {
-          title: 'All users',
+  router.post('/deleteUser', (req, res) => {
+    // const itemId = {_id: new ObjectId(req.params._id)};
+    // const itemId = {_id: new ObjectId('5ed69cecc10ce62bcf671e61')};
+    // console.log('\x1b[33mDelete item with id: \x1b[0m', itemId);
+    dbCollection.deleteOne({_id: new ObjectId(req.body.id)}, (err, result) => {
+      if (err) throw err;
+      dbCollection.find().toArray((err, result) => {
+        if (err) throw err;
+        console.log(`----------NEW LINE--------- \n ${JSON.stringify(req.body.id)}`);
+        res.render('./partial/user', {
           allUsers: result,
         });
       });
     });
   });
 
-  // End of db initialization
+  // End of db initialization for
 }, function(err) { // failureCallback
   throw (err);
 });

@@ -11,8 +11,8 @@
     <p>gender: <%= value.gender %> </p>
     <p>genres: <%= value.movieGenre %> </p>
     
-    <form action="./allUsers/<%= value._id %>" method="DELETE">
-    <button id=<%= value._id %> >Delete</button>
+    <form action="./deleteUser" method="post">
+    <button name="id" value=<%= value._id %> >Delete</button>
     </form>
   <% }) %>
 </main>
