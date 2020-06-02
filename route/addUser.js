@@ -38,8 +38,8 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   });
 
 
-  router.get('/user', (req, res, next) => {
-    console.log('Entered add/user');
+  router.get('/add', (req, res, next) => {
+    console.log('Entered user/add');
     dbCollection.findOne({
       num_id: 1,
     }, (error, result) => {
@@ -54,7 +54,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     });
   });
 
-  router.post('/user', (req, res, next) => {
+  router.post('/add', (req, res, next) => {
     const userBody = req.body;
     const nameUser = req.body.name;
     const ageUser = req.body.age;
@@ -93,7 +93,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   });
 
   /* Retrieves all users within collection 'users' */
-  router.get('/allUsers', (req, res, next) => {
+  router.get('/viewAllUsers', (req, res, next) => {
     console.log(`route: /AllUsers. Will render: ./partial/user (param allUsers: result)`);
     dbCollection.find().toArray((error, result) => {
       if (error) throw error;
@@ -108,18 +108,20 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
 
   //DOESNT ENTER THIS PAGE! WHY AND HOW
   // 2-6-2020 : Currently when clicking on delete, sends user to /add/allUsers
-  router.delete('/allUsers/:id', (req, res) => {
+  router.post('/viewAllUsers/:id', (req, res) => {
     const itemId = new ObjectId(req.params._id);
     console.log('Delete item with id: ', itemId);
-    
-    dbCollection.remove({_id: itemId}, function(error, result) {
+
+    dbCollection.deleteOne({
+      _id: itemId,
+    }, function(error, result) {
       if (error) throw error;
       // send back entire updated list after successful request
       dbCollection.find().toArray(function(error, result) {
         if (error) throw error;
-        console.log('(INSIDE find(). from delete) Delete item with id: ', itemId);
+        console.log('inside delete, delete id:', itemId);
         res.render('partial/user', {
-          name: 'All users',
+          title: 'All users',
           allUsers: result,
         });
       });
@@ -131,7 +133,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   throw (err);
 });
 
-router.get('/user', (req, res, next) => {
+router.get('/add', (req, res, next) => {
   console.log('Entered add/user (route:/add + render: partial/addUser)');
   db.initialize(dbName, 'genres', function(dbCollection) {
     dbCollection.findOne({

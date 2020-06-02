@@ -40,7 +40,7 @@ const mainRouter = require('./route/mainRouter');
 const addUser = require('./route/addUser');
 /* Express use mainRouter for index */
 
-app.use('/add', addUser);
+app.use('/user', addUser);
 app.use('/', mainRouter);
 
 

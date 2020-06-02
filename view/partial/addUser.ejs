@@ -4,7 +4,7 @@
 <%- include('./nav.ejs') %>
 
 <h1> <%= name %> </h1>
-<form action="./user" method="post">
+<form action="./add" method="post">
   <fieldset>
     <legend>Your info</legend>
     <label for="">name</label>
@@ -24,27 +24,6 @@
     <% for( let index = 0; index < result.genre.length; index++ ) { %>
       <label for="action"><input type="checkbox" name="movieGenre" id="<%= result.genre[index] %> " value="<%= result.genre[index] %> "> <%= result.genre[index] %> </label><br>
     <% } %>
-<!-- 
-      <label for="action"><input type="checkbox" name="movieGenre" id="action" value="action"> Action</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="animation" value="animation"> Animation</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="adventure" value="adventure"> Adventure</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="comedy" value="comedy"> Comedy</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="documentary" value="documentary"> Documentary</label><br>
-      <label for="action"><input type="checkbox" name="movieGenre" id="biography" value="biography"> Biography</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="drama" value="drama"> Drama</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="family" value="family"> Family</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="fantasy" value="fantasy"> Fantasy</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="history" value="history"> History</label><br>
-      <label for="action"><input type="checkbox" name="movieGenre" id="horror" value="horror"> Horror</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="children" value="children"> Children</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="crime" value="crime"> Crime</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="musical" value="musical"> Musical</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="music" value="music"> Music</label><br>
-      <label for="action"><input type="checkbox" name="movieGenre" id="mystery" value="mystery"> Mystery</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="war" value="war"> War</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="romance" value="romance"> Romance</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="sciencefiction" value="sciencefiction"> Science Fiction</label>
-      <label for="action"><input type="checkbox" name="movieGenre" id="thriller" value="thriller"> Thriller</label> -->
   </fieldset>
   <button type="submit">Add User</button>
 </form>
