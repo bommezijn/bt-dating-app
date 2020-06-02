@@ -1,8 +1,19 @@
+/**
+ * @file Managing routes for add/
+ * @description Manages routing and data retrieval from db for fake user data.
+ * Also used source for coloring the console.
+  * \x1b[33m = foreground yellow,
+  * \x1b[0m = reset instance so the rest isnt yellow either
+ * @source https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-
+ * @author Nathan Bommezijn
+ */
+
+
 /* The fix for this was putting mainrouter on the end
   - downright removing the same router from mainRouter
   - adding correct routing of creating user
   - fixing the form action to ./user
-  - explaining that my 404 is hijacking the route for a moment
+  - explained that my 404 is hijacking the route for a moment
   - VERY ANNOYING: How I named my files and routes.
   - In principle you want a route for each element of a CRUD.
    */
@@ -16,27 +27,16 @@ const ObjectId = require('mongodb').ObjectId;
 
 /**
  * @title mongoDB
- * @description NOT MY OWN CODE, after searching for many examples, ended up using this and mostly copying it.
- * It does feel bad, but I want to atleast create and delete.
- * Sadly now am initializing a new db connection for each route.
+ * See {@link dbFile}
  * @source https://dev.to/lenmorld/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
  */
-// << db init >>
-// db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
-//   // get all items
-//   dbCollection.find().toArray(function(err, result) {
-//     if (err) throw err;
-//     console.log(result);
-//   });
-// }, function(err) { // failureCallback
-//   throw (err);
-// });
 
 router.get('/user', (req, res, next) => {
-  console.log('Does it enter /user?');
+  console.log('Entered add/user');
   db.initialize(dbName, 'genres', function(dbCollection) {
     dbCollection.findOne({num_id: 1}, (error, result) => {
-      console.log(`\x1b[33m!!MUCHO IMPORTANTE ${result.genre}\x1b[0m`);
+      // Check if result returns object genre
+      // console.log(`\x1b[33m!!MUCHO IMPORTANTE ${result.genre}\x1b[0m`);
       if (error) throw error;
       // res.json(result);
       res.render('partial/addUser', {
@@ -45,10 +45,6 @@ router.get('/user', (req, res, next) => {
       });
     });
   });
-
-  // res.render('partial/addUser', {
-  //   name: 'Add a user to database',
-  // });
 });
 
 router.post('/user', (req, res, next) => {
@@ -57,37 +53,29 @@ router.post('/user', (req, res, next) => {
   const ageUser = req.body.age;
   const genderUser = req.body.gender;
   const preferedGenres = req.body.movieGenre;
-  /**
-   * @title Console.log coloring
-   * @description Console log coloring, can be done with ANSI color escaping.
-   * @source https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-
-   * \x1b[33m = foreground yellow, \x1b[0m = reset instance so the rest isnt yellow either
-   */
-  console.log(`test check: ${preferedGenres}`);
-  console.log(`Gender returns type: \x1b[33m${typeof(genderUser)}, ${genderUser}\x1b[0m`);
-
+  console.log(`test check: ${nameUser} likes ${preferedGenres}`);
   db.initialize(dbName, collectionName, function(dbCollection) {// successCallback
     dbCollection.insertOne(userBody, (error, result) => {
       if (error) throw error;
       // return user list
       dbCollection.find().toArray((_error, _result) => {
         if (_error) throw _error;
-        console.error(_result);
+        // console.error(_result);
+        res.render('./partial/user', {
+          allUsers: _result,
+          name: nameUser,
+          age: ageUser,
+          gender: genderUser,
+          preferedGenres: preferedGenres,
+        });
       });
     });
   }, function(err) { // failureCallback
     throw (err);
   });
-
-  res.render('./partial/user', {
-    name: nameUser,
-    age: ageUser,
-    gender: genderUser,
-    preferedGenres: preferedGenres,
-
-  });
 });
 
+/* retrieves specific user on _ID and parses it as a json object */
 router.get('/findUser/:_id', (req, res, next) => {
   console.log(`Enter add/findUser/${JSON.stringify(req.params)}`);
   const objId = new ObjectId(req.params._id);
@@ -101,6 +89,7 @@ router.get('/findUser/:_id', (req, res, next) => {
   });
 });
 
+/* Retrieves all users within collection 'users' */
 router.get('/allUsers', (req, res, next) => {
   db.initialize(dbName, collectionName, function(dbCollection) {
     dbCollection.find().toArray((error, result) =>{

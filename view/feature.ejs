@@ -6,7 +6,7 @@
   <%- include('partial/nav.ejs') %>
   <main class="container">
     <h1><%= title %> </h1>
-    <%- include('partial/test.ejs', {minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref,
+    <%- include('partial/prefData.ejs', {minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref,
     })  %>
     <%- include('partial/form.ejs') %>
     <% filterData.forEach(function(user) { %>
