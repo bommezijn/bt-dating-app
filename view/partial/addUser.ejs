@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./header.ejs', {title: 'add User'}) %>
+<%- include('./nav.ejs') %>
+
+<h1> <%= name %> </h1>
+<form action="./add" method="post">
+  <fieldset>
+    <legend>Your info</legend>
+    <label for="">name</label>
+    <input type="text" name="name" id="name"><br>
+    <label for="">age</label>
+    <input type="number" name="age" id="age">
+    <br>
+    <label for="">Gender:</label>
+    <input type="radio" name="gender" id="male" value="male">
+    <label for="male">Male</label>
+    <input type="radio" name="gender" id="female" value="female">
+    <label for="female">female</label>
+    <input type="radio" name="gender" id="other" value="other">
+    <label for="other">other</label>
+    <br>
+    <label for="">Movie Genres</label><br>
+    <% for( let index = 0; index < result.genre.length; index++ ) { %>
+      <label for="action"><input type="checkbox" name="movieGenre" id="<%= result.genre[index] %> " value="<%= result.genre[index] %> "> <%= result.genre[index] %> </label><br>
+    <% } %>
+  </fieldset>
+  <button type="submit">Add User</button>
+</form>
+<%- include('footer.ejs') %>
+
+</html>
