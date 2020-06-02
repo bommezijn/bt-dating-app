@@ -83,7 +83,6 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     console.log(`Enter add/findUser/${JSON.stringify(req.params)}`);
     const objId = new ObjectId(req.params._id);
 
-
     dbCollection.findOne({
       _id: objId,
     }, (error, result) => {
@@ -106,26 +105,32 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     });
   });
 
+  //DOESNT ENTER THIS PAGE! WHY AND HOW
   // 2-6-2020 : Currently when clicking on delete, sends user to /add/allUsers
-  router.delete('/allUsers/:id', (request, response) => {
-    const itemId = request.params.id;
+  router.delete('/allUsers/:id', (req, res) => {
+    const itemId = new ObjectId(req.params._id);
     console.log('Delete item with id: ', itemId);
 
-    dbCollection.deleteOne({id: itemId}, function(error, result) {
+    dbCollection.remove({_id: itemId}, function(error, result) {
       if (error) throw error;
       // send back entire updated list after successful request
-      dbCollection.find().toArray(function(_error, _result) {
-        if (_error) throw _error;
-        response.json(_result);
+      dbCollection.find().toArray(function(error, result) {
+        if (error) throw error;
+        res.render('partial/user', {
+          name: 'All users',
+          result: result,
+        });
       });
     });
   });
+
+  // End of db initialization
 }, function(err) { // failureCallback
   throw (err);
 });
 
 router.get('/user', (req, res, next) => {
-  console.log('Entered add/user');
+  console.log('Entered add/user (route:/add + render: partial/addUser)');
   db.initialize(dbName, 'genres', function(dbCollection) {
     dbCollection.findOne({
       num_id: 1,
