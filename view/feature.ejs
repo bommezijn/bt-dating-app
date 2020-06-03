@@ -11,11 +11,14 @@
     })  %> 
     <!-- distance: distance, -->
     <%- include('partial/form.ejs') %>
-    <% filterData.forEach(function(user) { %>
+    <% Object.entries(filterData).forEach(([key, value]) => { %>
         <article class="userCard">
-            <%- include('partial/userBlock', {user: user}) %>
+          <p>name: <%= value.name %> </p>
+          <p>age: <%= value.age %> </p>
+          <p>Is: <%= value.gender %> </p>
+          <p>genres: <%= value.movieGenre %> </p>
         </article>
-        <% }); %>
+        <% }) %>
     </main>
     <%- include('partial/footer.ejs')  %>
 </body>

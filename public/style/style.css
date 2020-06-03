@@ -68,6 +68,8 @@ span.span-tile:after {
 }
 
 .userCard{
+    min-width: 381px;
+    width: 60vw;
     margin-bottom: 1em;
     padding: 0.5em;
     background-color: #fffbeb;
@@ -88,7 +90,7 @@ span.span-tile:after {
     justify-items: flex-end;
     padding: 1em;
     margin: 2em 0 ;
-    width: 28em;
+    width: 60vw;
     background-color: #e2eaf4;
 }
 
@@ -124,7 +126,13 @@ span.span-tile:after {
 }
 
 .submit-delete {
-    background-color: red;
+    border: none;
+    padding: 0.5em 1em;
+    margin: 1em;
+    width: 10em;
+    border-radius: 15px;
+    margin-left: 35vw;
+    background-color: var(--alt-accent-color);
 }
 
 footer{
