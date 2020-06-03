@@ -1,5 +1,5 @@
 /**
- * @file Managing routes for add/
+ * @file Managing routes for user/
  * @description Manages routing and data retrieval from db for fake user data.
  * Also used source for coloring the console.
  * \x1b[33m = foreground yellow,
@@ -45,7 +45,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     });
   });
 
-/**
+  /**
  * @title /ADD USER CREATE user with data from form.
  * @description Retrieves data from request body, parses it into mongodb.
  */
@@ -87,9 +87,9 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   });
 
   /* READ all users within collection 'users' */
-    /**
+  /**
  * @title Retrieve users from mongoDB
- * @description retrieves all users in collection. 
+ * @description retrieves all users in collection.
  */
   router.get('/viewAllUsers', (req, res, next) => {
     dbCollection.find().toArray((error, result) => {
@@ -122,10 +122,10 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   /*
 DELETE user when clicked on delete key
  */
-/**
+  /**
  * @title DELETE an user
  * @description
- * @souorce https://www.youtube.com/watch?v=-JcgwLIh0Z4 Retrieved 2 June 2020. 
+ * @souorce https://www.youtube.com/watch?v=-JcgwLIh0Z4 Retrieved 2 June 2020.
  */
   router.post('/deleteUser', (req, res) => {
     // console.log('\x1b[33mDelete item with id: \x1b[0m', itemId);
