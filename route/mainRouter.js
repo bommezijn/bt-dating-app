@@ -29,24 +29,30 @@ router.get('/about', (req, res) => {
 router.get('/feature', (req, res, next) => {
   const minAge = req.body.minAge;
   const maxAge = req.body.maxAge;
-  const distance = req.body.distance;
+  // const distance = req.body.distance;
   const sexPref = req.body.sexPref;
   res.render('feature', {
     title: 'prefences',
     filterData: data.users,
-    minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref,
+    minAge: minAge | '18',
+    maxAge: maxAge | '28',
+    // distance: distance,
+    sexPref: sexPref | 'non-specified',
   });
 });
 
 router.post('/feature', (req, res, next) => {
   const minAge = req.body.minAge;
   const maxAge = req.body.maxAge;
-  const distance = req.body.distance;
+  // const distance = req.body.distance;
   const sexPref = req.body.sexPref;
   res.render('feature', {
     title: 'sent Data',
     filterData: data.users,
-    minAge: minAge, maxAge: maxAge, distance: distance, sexPref: sexPref,
+    minAge: minAge,
+    maxAge: maxAge,
+    // distance: distance,
+    sexPref: sexPref,
   });
 });
 
