@@ -84,8 +84,6 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   });
 
 
-
-
   // ASSIGNMENTS FROM CLASS
   /* Send img of girl when visiting /imagefile */
   router.get('/imagefile', (req, res) => {
