@@ -1,5 +1,5 @@
 /**
- * @file Managing routes for add/
+ * @file Managing routes for user/
  * @description Manages routing and data retrieval from db for fake user data.
  * Also used source for coloring the console.
  * \x1b[33m = foreground yellow,
@@ -7,14 +7,6 @@
  * @source https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-
  * @author Nathan Bommezijn
  */
-/* The fix for this was putting mainrouter on the end
-  - downright removing the same router from mainRouter
-  - adding correct routing of creating user
-  - fixing the form action to ./user
-  - explained that my 404 is hijacking the route for a moment
-  - VERY ANNOYING: How I named my files and routes.
-  - In principle you want a route for each element of a CRUD.
-   */
 const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
@@ -26,7 +18,7 @@ const ObjectId = require('mongodb').ObjectId;
 /**
  * @title mongoDB
  * See {@link dbFile}
- * @description Initionalisation of database connection
+ * @description Initionalisation of database connection. Hold until I'm done
  * @source https://dev.to/lenmorld/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
  */
 db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
@@ -34,27 +26,29 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   dbCollection.find().toArray(function(err, result) {
     if (err) throw err;
     console.log(result);
-
-    // << return response to client >>
   });
 
-
+  /**
+ * @title Create view of movie genres within /user/add
+ * @description Router to add and fill form with array of genres to create checkboxes.
+ * @param {int32} num_id identifier for collection genre.
+ */
   router.get('/add', (req, res, next) => {
-    console.log('Entered user/add');
     dbCollection.findOne({
       num_id: 1,
     }, (error, result) => {
-      // Check if result returns object genre
-      // console.log(`\x1b[33m!!MUCHO IMPORTANTE ${result.genre}\x1b[0m`);
       if (error) throw error;
       // res.json(result);
       res.render('partial/addUser', {
-        name: 'Add a user to database',
         result: result,
       });
     });
   });
 
+  /**
+ * @title /ADD USER CREATE user with data from form.
+ * @description Retrieves data from request body, parses it into mongodb.
+ */
   router.post('/add', (req, res, next) => {
     const userBody = req.body;
     const nameUser = req.body.name;
@@ -64,11 +58,9 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     console.log(`test check: ${nameUser} likes ${preferedGenres}`);
     dbCollection.insertOne(userBody, (error, result) => {
       if (error) throw error;
-      // return user list
       dbCollection.find().toArray((_error, _result) => {
         if (_error) throw _error;
-        // console.error(_result);
-        res.render('./partial/user', {
+        res.render('./user', {
           allUsers: _result,
           name: nameUser,
           age: ageUser,
@@ -79,7 +71,8 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     });
   });
 
-  /* retrieves specific user on _ID and parses it as a json object */
+  /* retrieves specific user on _ID and parses it as a json object.
+    Only works if you know the exact _id ObjectId Notation from MongoDB */
   router.get('/findUser/:_id', (req, res, next) => {
     console.log(`Enter add/findUser/${JSON.stringify(req.params)}`);
     const objId = new ObjectId(req.params._id);
@@ -93,47 +86,67 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     });
   });
 
-  /* Retrieves all users within collection 'users' */
+  /* READ all users within collection 'users' */
+  /**
+ * @title Retrieve users from mongoDB
+ * @description retrieves all users in collection.
+ */
   router.get('/viewAllUsers', (req, res, next) => {
-    console.log(`route: /AllUsers. Will render: ./partial/user (param allUsers: result)`);
     dbCollection.find().toArray((error, result) => {
       if (error) throw error;
-      // console.log(result); //logs all users within user
-      // console.log(result.length); //prints length of users
-      // res.json(result);
-      res.render('./partial/user', {
+      res.render('./user', {
         allUsers: result,
       });
     });
   });
 
-  // DOESNT ENTER THIS PAGE! WHY AND HOW
-  // 2-6-2020 : Currently when clicking on delete, sends user to /add/allUsers
-  router.post('/viewAllUsers/:id', (req, res) => {
-    const itemId = new ObjectId(req.params._id);
-    console.log('Delete item with id: ', itemId);
-
-    dbCollection.deleteOne({
-      _id: itemId,
-    }, function(error, result) {
-      if (error) throw error;
-      // send back entire updated list after successful request
-      dbCollection.find().toArray(function(error, result) {
-        if (error) throw error;
-        console.log('inside delete, delete id:', itemId);
-        res.render('partial/user', {
-          title: 'All users',
+  router.post('/updateUser', (req, res, next) => {
+    const item = {
+      name: req.body.name,
+      age: req.body.age,
+      gender: req.body.gender,
+    };
+    const id = req.body.id;
+    dbCollection.updateOne({'_id': new ObjectId(id)}, {$set: item}, (err, result) => {
+      if (err) throw err;
+      console.log(`User ${req.body.id} updated`);
+      dbCollection.find().toArray((err, result) => {
+        if (err) throw err;
+        res.render('./user', {
           allUsers: result,
         });
       });
     });
   });
 
-  // End of db initialization
+  /*
+DELETE user when clicked on delete key
+ */
+  /**
+ * @title DELETE an user
+ * @description
+ * @souorce https://www.youtube.com/watch?v=-JcgwLIh0Z4 Retrieved 2 June 2020.
+ */
+  router.post('/deleteUser', (req, res) => {
+    // console.log('\x1b[33mDelete item with id: \x1b[0m', itemId);
+    dbCollection.deleteOne({_id: new ObjectId(req.body.id)}, (err, result) => {
+      if (err) throw err;
+      dbCollection.find().toArray((err, result) => {
+        if (err) throw err;
+        console.log(`----------NEW LINE--------- \n ${JSON.stringify(req.body.id)}`);
+        res.render('./user', {
+          allUsers: result,
+        });
+      });
+    });
+  });
+
+  // End of db initialization for
 }, function(err) { // failureCallback
   throw (err);
 });
 
+// Adds list of genres to /addUser (seperate collection)
 router.get('/add', (req, res, next) => {
   console.log('Entered add/user (route:/add + render: partial/addUser)');
   db.initialize(dbName, 'genres', function(dbCollection) {
