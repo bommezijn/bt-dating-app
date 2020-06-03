@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<%- include('./partial/header.ejs', {title: 'User view'}) %>
+<%- include('./partial/nav.ejs') %>
+<main>
+  <section class="user">
+    <h1>List of users</h1>
+    <% Object.entries(allUsers).forEach(([key, value]) => { %>
+    <p>name: <%= value.name %> </p>
+    <p>age: <%= value.age %> </p>
+    <p>gender: <%= value.gender %> </p>
+    <p>genres: <%= value.movieGenre %> </p>
+
+    <form action="./deleteUser" method="post">
+      <button name="id" value=<%= value._id %>>Delete</button>
+    </form>
+    <% }) %>
+  </section>
+  <section class="update">
+    <h3>Update Data</h3>
+    <form action="./updateUser" method="post">
+      <select name="id" id="id">
+        <% Object.entries(allUsers).forEach(([key, value]) =>{ %>
+        <option value="<%= value._id %>"><%= value.name %></option>
+        <% }) %>
+      </select>
+      <div class="input">
+        <label for="name">name</label>
+        <input type="text" id="name" name="name">
+      </div>
+      <div class="input">
+        <label for="age">age</label>
+        <input type="numer" id="age" name="age">
+      </div>
+      <div class="input">
+        <label for="gender">gender</label>
+        <input type="text" id="gender" name="gender">
+      </div>
+      <button type="submit">UPDATE</button>
+    </form>
+  </section>
+</main>
