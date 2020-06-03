@@ -20,11 +20,11 @@ const db = require('../db');
 const ObjectId = require('mongodb').ObjectId;
 
 /**
-* @title mongoDB
-* See {@link dbFile}
-* @description Initionalisation of database connection. Hold until I'm done
-* @source https://dev.to/lenmorld/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
-*/
+ * @title mongoDB
+ * See {@link dbFile}
+ * @description Initionalisation of database connection. Hold until I'm done
+ * @source https://dev.to/lenmorld/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
+ */
 db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
   // get all items
   dbCollection.find().toArray(function(err, result) {
@@ -51,9 +51,8 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   router.get('/feature', (req, res, next) => {
     const minAge = req.body.minAge;
     const maxAge = req.body.maxAge;
-    // const distance = req.body.distance;
     const sexPref = req.body.sexPref;
-    console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data}`);
+    // console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${JSON.stringify(data)}`);
     res.render('feature', {
       title: 'prefences',
       filterData: data,
@@ -66,10 +65,14 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
 
   router.post('/feature', (req, res, next) => {
     const minAge = req.body.minAge;
+    const filterMinAge = JSON.stringify(req.body.minAge);
     const maxAge = req.body.maxAge;
     // const distance = req.body.distance;
     const sexPref = req.body.sexPref;
-    console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data}`);
+    const filtered = data.sort((a, b) => (a.age > b.filterMinAge) ? 1 : ((b.age > a.filterMinAge) ? -1 : 0));
+    console.log(`filtered array: ${JSON.stringify(filtered[0])}`);
+    console.log(`filtered array: ${JSON.stringify(minAge)}`);
+
     res.render('feature', {
       title: 'sent Data',
       filterData: data,
