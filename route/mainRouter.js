@@ -53,7 +53,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     const maxAge = req.body.maxAge;
     // const distance = req.body.distance;
     const sexPref = req.body.sexPref;
-    console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data}`);
+    // console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data}`);
     res.render('feature', {
       title: 'prefences',
       filterData: data,
@@ -69,7 +69,14 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
     const maxAge = req.body.maxAge;
     // const distance = req.body.distance;
     const sexPref = req.body.sexPref;
-    console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data}`);
+    console.log(`\x1b[33mTHIS IS INDo\x1b[0m \n ${JSON.stringify(data)}`);
+    console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data.length}`);
+    // const query = { gender: /^f/ };
+    // dbCollection.find(query).toArray
+
+    // dbCollection.find().toArray(function(err, result) {
+
+
     res.render('feature', {
       title: 'sent Data',
       filterData: data,
