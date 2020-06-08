@@ -30,6 +30,8 @@ MONGO_DOMAIN=YOUR_DB_DOMAIN
 * rename `'.env.example'` to `'.env'` and move inside it.
 * Enter your database username, password and domain in `MONGO_USER`, `MONGO_PASS` and `MONGO_DOMAIN` respectively.  
 
+<!-- screenshot db image? -->
+
 ## Start the server.
 ```
 $ npm run start
