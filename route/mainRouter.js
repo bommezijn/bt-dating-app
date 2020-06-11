@@ -80,7 +80,6 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
       ageIsHigher(user.age, minAge) &&
       ageIsLower(user.age, maxAge) &&
       sexualPreference(user.gender, sexPref));
-
     res.render('feature', {
       title: 'sent Data',
       filterData: resultData,

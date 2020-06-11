@@ -11,6 +11,9 @@
     })  %> 
     <!-- distance: distance, -->
     <%- include('partial/form.ejs') %>
+    <% if (filterData.length < 1) { %>
+     <p>You are too strict. Loosen up ;)</p>
+    <% } %>
     <% Object.entries(filterData).forEach(([key, value]) => { %>
         <article class="userCard">
           <p>name: <%= value.name %> </p>
