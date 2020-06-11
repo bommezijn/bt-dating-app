@@ -11,8 +11,6 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({
   extended: false,
 }));
-// eslint-disable-next-line new-cap
-// const data = require(path.join(__dirname, '../public/data/data'));
 let data;
 const dbName = 'dateapp';
 const collectionName = 'users';
@@ -30,7 +28,6 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   dbCollection.find().toArray(function(err, result) {
     if (err) throw err;
     data = result;
-    console.log(`TESTING 1, 2, 3 ${JSON.stringify(data)}`);
   });
 
   router.get('/', (req, res) => {
@@ -59,27 +56,34 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
       filterData: data,
       minAge: minAge | '18',
       maxAge: maxAge | '28',
-      // distance: distance,
       sexPref: sexPref | 'non-specified',
     });
   });
 
+  const ageIsHigher = (age, minAge) => {
+    return age >= minAge;
+  };
+
+  const ageIsLower = (age, maxAge) => {
+    return age <= maxAge;
+  };
+
+  const sexualPreference = (sexuality, preferedSexuality) => {
+    return sexuality === preferedSexuality;
+  };
+
   router.post('/feature', (req, res, next) => {
     const minAge = req.body.minAge;
     const maxAge = req.body.maxAge;
-    // const distance = req.body.distance;
     const sexPref = req.body.sexPref;
-    console.log(`\x1b[33mTHIS IS INDo\x1b[0m \n ${JSON.stringify(data)}`);
-    console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data.length}`);
-    // const query = { gender: /^f/ };
-    // dbCollection.find(query).toArray
-
-    // dbCollection.find().toArray(function(err, result) {
-
+    const resultData = data.filter((user) =>
+      ageIsHigher(user.age, minAge) &&
+      ageIsLower(user.age, maxAge) &&
+      sexualPreference(user.gender, sexPref));
 
     res.render('feature', {
       title: 'sent Data',
-      filterData: data,
+      filterData: resultData,
       minAge: minAge,
       maxAge: maxAge,
       // distance: distance,
