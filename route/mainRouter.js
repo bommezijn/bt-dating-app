@@ -56,7 +56,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
       filterData: data,
       minAge: minAge | '18',
       maxAge: maxAge | '28',
-      sexPref: sexPref | 'non-specified',
+      sexPref: sexPref | 'non-other',
     });
   });
 
