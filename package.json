@@ -4,7 +4,8 @@
   "description": "Block Tech Dating App course Repo (Tech4)",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon"
+    "start": "node index.js",
+    "start:dev": "nodemon"
   },
   "repository": {
     "type": "git",
