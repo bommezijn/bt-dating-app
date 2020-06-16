@@ -52,7 +52,6 @@ https://dewarian.github.io/bt-dating-app/
 - [ ] continious intergration with travic CI
 - [ ] link VPS to ([domain](dating.bommezijn.me))
 - [ ] add sessions
-- [ ] 
 
 # License
 
