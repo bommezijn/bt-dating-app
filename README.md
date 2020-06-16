@@ -4,6 +4,8 @@
 The dating app from CMD Blok Tech. Find a match for everyone.  
 Feature is about setting the preferences to see who matches your movie preferences/
 
+[Visit live version](http://208.117.81.227:3031/)
+
 # Installation
 
 To be able to run or use this project you are **required** to have MongoDB, NPM and NodeJS installed.
@@ -46,6 +48,12 @@ For more in-depth information see [wiki](https://github.com/dewarian/bt-dating-a
 # Static page
 https://dewarian.github.io/bt-dating-app/
 
-## License
+# To Do
+- [ ] continious intergration with travic CI
+- [ ] link VPS to ([domain](dating.bommezijn.me))
+- [ ] add sessions
+- [ ] 
+
+# License
 
 MIT
