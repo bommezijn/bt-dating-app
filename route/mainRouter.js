@@ -46,17 +46,26 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
    * @source https://expressjs.com/en/4x/api.html#router
    *  */
   router.get('/feature', (req, res, next) => {
-    const minAge = req.body.minAge;
-    const maxAge = req.body.maxAge;
-    // const distance = req.body.distance;
-    const sexPref = req.body.sexPref;
-    // console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data}`);
-    res.render('feature', {
-      title: 'prefences',
-      filterData: data,
-      minAge: minAge | '18',
-      maxAge: maxAge | '28',
-      sexPref: sexPref | 'non-other',
+    db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
+      // get all items
+      dbCollection.find().toArray(function(err, result) {
+        if (err) throw err;
+        data = result;
+      });
+      const minAge = req.body.minAge;
+      const maxAge = req.body.maxAge;
+      // const distance = req.body.distance;
+      const sexPref = req.body.sexPref;
+      // console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data}`);
+      res.render('feature', {
+        title: 'prefences',
+        filterData: data,
+        minAge: minAge | '18',
+        maxAge: maxAge | '28',
+        sexPref: sexPref | 'non-other',
+      });
+    }, function(err) { // failureCallback
+      throw (err);
     });
   });
 
@@ -73,20 +82,29 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   };
 
   router.post('/feature', (req, res, next) => {
-    const minAge = req.body.minAge;
-    const maxAge = req.body.maxAge;
-    const sexPref = req.body.sexPref;
-    const resultData = data.filter((user) =>
-      ageIsHigher(user.age, minAge) &&
+    db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
+      // get all items
+      dbCollection.find().toArray(function(err, result) {
+        if (err) throw err;
+        data = result;
+      });
+      const minAge = req.body.minAge;
+      const maxAge = req.body.maxAge;
+      const sexPref = req.body.sexPref;
+      const resultData = data.filter((user) =>
+        ageIsHigher(user.age, minAge) &&
       ageIsLower(user.age, maxAge) &&
       sexualPreference(user.gender, sexPref));
-    res.render('feature', {
-      title: 'sent Data',
-      filterData: resultData,
-      minAge: minAge,
-      maxAge: maxAge,
-      // distance: distance,
-      sexPref: sexPref,
+      res.render('feature', {
+        title: 'sent Data',
+        filterData: resultData,
+        minAge: minAge,
+        maxAge: maxAge,
+        // distance: distance,
+        sexPref: sexPref,
+      });
+    }, function(err) { // failureCallback
+      throw (err);
     });
   });
 
