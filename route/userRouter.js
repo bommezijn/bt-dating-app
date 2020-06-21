@@ -133,7 +133,7 @@ DELETE user when clicked on delete key
       if (err) throw err;
       dbCollection.find().toArray((err, result) => {
         if (err) throw err;
-        console.log(`----------NEW LINE--------- \n ${JSON.stringify(req.body.id)}`);
+        console.log(`---------- DELETE --------- \n ${JSON.stringify(req.body.id)}`);
         res.render('./user', {
           allUsers: result,
         });
