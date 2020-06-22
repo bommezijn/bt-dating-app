@@ -43,8 +43,6 @@ store.on('error', (err) => {
   console.log(`Cannot store session`);
 });
 
-const role = 'admin';
-
 app.use(session({
   cookie: {sameSite: true, secure: false},
   name: 'dating-session',
