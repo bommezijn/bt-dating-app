@@ -64,4 +64,4 @@ app.use('/user', userRouter);
 app.use('/', mainRouter);
 
 // Express listens to port 3030 and on start print link
-app.listen(3030, () => console.log(`Dating app listening at \x1b[31mhttp://localhost:${port}\x1b[0m`));
+app.listen(process.env.PORT || 3030, () => console.log(`Dating app listening at \x1b[31mhttp://localhost:${port}\x1b[0m`));
