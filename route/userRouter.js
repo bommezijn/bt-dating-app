@@ -10,10 +10,11 @@
 const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
-const db = require('../db');
+const db = require('../model/db');
 const dbName = 'dateapp';
 const collectionName = 'users';
 const ObjectId = require('mongodb').ObjectId;
+
 
 /**
  * @title mongoDB
@@ -25,14 +26,17 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   // get all items
   dbCollection.find().toArray(function(err, result) {
     if (err) throw err;
-    console.log(result);
+    // console.log(result);
+    // result.forEach(element => {
+    //   element.
+    // });
   });
 
   /**
- * @title Create view of movie genres within /user/add
- * @description Router to add and fill form with array of genres to create checkboxes.
- * @param {int32} num_id identifier for collection genre.
- */
+   * @title Create view of movie genres within /user/add
+   * @description Router to add and fill form with array of genres to create checkboxes.
+   * @param {int32} num_id identifier for collection genre.
+   */
   router.get('/add', (req, res, next) => {
     dbCollection.findOne({
       num_id: 1,
@@ -46,16 +50,19 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
   });
 
   /**
- * @title /ADD USER CREATE user with data from form.
- * @description Retrieves data from request body, parses it into mongodb.
- */
+   * @title /ADD USER CREATE user with data from form.
+   * @description Retrieves data from request body, parses it into mongodb.
+   */
   router.post('/add', (req, res, next) => {
     const userBody = req.body;
     const nameUser = req.body.name;
     const ageUser = req.body.age;
+    const role = req.body.role;
     const genderUser = req.body.gender;
     const preferedGenres = req.body.movieGenre;
+    req.session.userRole = role;
     console.log(`test check: ${nameUser} likes ${preferedGenres}`);
+    console.log(`session check: ${req.session.userRole}`);
     dbCollection.insertOne(userBody, (error, result) => {
       if (error) throw error;
       dbCollection.find().toArray((_error, _result) => {
@@ -88,9 +95,9 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
 
   /* READ all users within collection 'users' */
   /**
- * @title Retrieve users from mongoDB
- * @description retrieves all users in collection.
- */
+   * @title Retrieve users from mongoDB
+   * @description retrieves all users in collection.
+   */
   router.get('/viewAllUsers', (req, res, next) => {
     dbCollection.find().toArray((error, result) => {
       if (error) throw error;
@@ -105,9 +112,14 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
       name: req.body.name,
       age: req.body.age,
       gender: req.body.gender,
+      role: req.body.role,
     };
     const id = req.body.id;
-    dbCollection.updateOne({'_id': new ObjectId(id)}, {$set: item}, (err, result) => {
+    dbCollection.updateOne({
+      '_id': new ObjectId(id),
+    }, {
+      $set: item,
+    }, (err, result) => {
       if (err) throw err;
       console.log(`User ${req.body.id} updated`);
       dbCollection.find().toArray((err, result) => {
@@ -123,22 +135,34 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
 DELETE user when clicked on delete key
  */
   /**
- * @title DELETE an user
- * @description
- * @souorce https://www.youtube.com/watch?v=-JcgwLIh0Z4 Retrieved 2 June 2020.
- */
+   * @title DELETE an user
+   * @description
+   * @souorce https://www.youtube.com/watch?v=-JcgwLIh0Z4 Retrieved 2 June 2020.
+   */
   router.post('/deleteUser', (req, res) => {
-    // console.log('\x1b[33mDelete item with id: \x1b[0m', itemId);
-    dbCollection.deleteOne({_id: new ObjectId(req.body.id)}, (err, result) => {
-      if (err) throw err;
+    if (req.session.userRole == 'admin') {
+      // console.log('\x1b[33mDelete item with id: \x1b[0m', itemId);
+      dbCollection.deleteOne({
+        _id: new ObjectId(req.body.id),
+      }, (err, result) => {
+        if (err) throw err;
+        dbCollection.find().toArray((err, result) => {
+          if (err) throw err;
+          console.log(`---------- DELETE --------- \n ${JSON.stringify(req.body.id)}`);
+          res.render('./user', {
+            allUsers: result,
+          });
+        });
+      });
+    } else {
+      console.log(`session userRole is: ${req.session.userRole}, only admin can delete`);
       dbCollection.find().toArray((err, result) => {
         if (err) throw err;
-        console.log(`---------- DELETE --------- \n ${JSON.stringify(req.body.id)}`);
         res.render('./user', {
           allUsers: result,
         });
       });
-    });
+    }
   });
 
   // End of db initialization for

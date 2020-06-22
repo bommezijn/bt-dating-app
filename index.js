@@ -19,6 +19,8 @@ dotenvExpand(myEnv);
  */
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const path = require('path');
 const app = express();
 const port = 3030;
@@ -27,13 +29,31 @@ const port = 3030;
 app.set('view engine', 'ejs');
 // Set views folder
 app.set('views', path.join(__dirname, 'view'));
-
 // Allow app to get static files from public
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({
-  extended: true,
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+const store = new MongoDBStore({
+  uri: process.env.M_URL,
+  databaseName: 'dateapp',
+  collection: 'sessions',
+});
+store.on('error', (err) => {
+  console.log(`Cannot store session`);
+});
+
+const role = 'admin';
+
+app.use(session({
+  cookie: {sameSite: true, secure: false},
+  name: 'dating-session',
+  secret: process.env.ULTRA_SECRET,
+  saveUninitialized: true,
+  store: store,
+  resave: true,
+  userRole: 'admin',
+}));
 
 /* Import mainRouter && addUser for application */
 const mainRouter = require('./route/mainRouter');

@@ -14,8 +14,8 @@ router.use(bodyParser.urlencoded({
 let data;
 const dbName = 'dateapp';
 const collectionName = 'users';
-const db = require('../db');
-const ObjectId = require('mongodb').ObjectId;
+const db = require('../model/db');
+const session = require('express-session');
 
 /**
 * @title mongoDB
@@ -23,7 +23,7 @@ const ObjectId = require('mongodb').ObjectId;
 * @description Initionalisation of database connection. Hold until I'm done
 * @source https://dev.to/lenmorld/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
 */
-db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
+db.initialize(dbName, collectionName, function(dbCollection) {// successCallback
   // get all items
   dbCollection.find().toArray(function(err, result) {
     if (err) throw err;
@@ -55,8 +55,6 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
       const minAge = req.body.minAge;
       const maxAge = req.body.maxAge;
       const sexPref = req.body.sexPref;
-      // const distance = req.body.distance;
-      // console.log(`\x1b[33mTHIS IS SPARTA\x1b[0m \n ${data}`);
       res.render('feature', {
         title: 'preferences',
         filterData: data,
@@ -87,6 +85,8 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
       const minAge = req.body.minAge;
       const maxAge = req.body.maxAge;
       const sexPref = req.body.sexPref;
+      session.userPref = {minAge: minAge, maxAge: maxAge, sexPref: sexPref};
+      console.log(`session: \n ${JSON.stringify(req.session)}`);
       const resultData = data.filter((user) => ageIsHigher(user.age, minAge) && ageIsLower(user.age, maxAge) && sexualPreference(user.gender, sexPref));
       res.render('feature', {
         title: 'sent Data',

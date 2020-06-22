@@ -7,6 +7,13 @@
     <section class="update">
       <h3>Change user data</h3>
       <form action="./updateUser" method="post">
+        <label class="add-label" for="role">
+          Choose role <select class="input input-drop" name="role" id="role">
+            <option value="user">User</option>
+            <option value="mod">Moderator</option>
+            <option value="admin">Administrator</option>
+          </select>
+        </label>
         <label class="add-label" for="id">
           Choose user <select class="input input-drop" name="id" id="id">
             <% Object.entries(allUsers).forEach(([key, value]) =>{ %>
