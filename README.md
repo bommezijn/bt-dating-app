@@ -5,6 +5,8 @@
 The dating app from CMD Blok Tech. Find a match for everyone.  
 Feature is about setting the preferences to see who matches your movie preferences/
 
+![image](https://user-images.githubusercontent.com/13199349/85296979-7478d900-b4a2-11ea-8f4d-c12241e881c0.png)
+
 [(TRAVIS) Live Version](https://bt-dating-app.herokuapp.com/)
 [(Atlantic)Visit live version](http://208.117.81.227:3031/)
 
