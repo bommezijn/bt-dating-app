@@ -4,7 +4,8 @@
 The dating app from CMD Blok Tech. Find a match for everyone.  
 Feature is about setting the preferences to see who matches your movie preferences/
 
-[Visit live version](http://208.117.81.227:3031/)
+[(TRAVIS) Live Version](https://bt-dating-app.herokuapp.com/)
+[(Atlantic)Visit live version](http://208.117.81.227:3031/)
 
 # Installation
 
@@ -49,9 +50,9 @@ For more in-depth information see [wiki](https://github.com/dewarian/bt-dating-a
 https://dewarian.github.io/bt-dating-app/
 
 # To Do
-- [ ] continious intergration with travic CI
+- [x] continious intergration with travic CI
 - [ ] link VPS to ([domain](dating.bommezijn.me))
-- [ ] add sessions
+- [x] add sessions
 
 # License
 
