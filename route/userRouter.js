@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /**
  * @file Managing routes for user/
  * @description Manages routing and data retrieval from db for fake user data.
