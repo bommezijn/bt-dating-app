@@ -8,10 +8,17 @@
   <fieldset>
     <legend>Your info</legend>
     <label for="">name</label>
-    <input type="text" name="name" id="name"><br>
+    <input type="text" name="name" id="name" required><br>
     <label for="">age</label>
-    <input type="number" name="age" id="age">
+    <input type="number" name="age" id="age" required>
     <br>
+    <label for="role">role</label> 
+      <select class="input input-drop" name="role" id="role" required>
+        <option value="user">User</option>
+        <option value="mod">Moderator</option>
+        <option value="admin">Administrator</option>
+      </select>
+<br>
     <label for="">Gender:</label>
     <input type="radio" name="gender" id="male" value="male">
     <label for="male">Male</label>
