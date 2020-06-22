@@ -35,11 +35,15 @@ MONGO_DOMAIN=YOUR_DB_DOMAIN
 * Enter your database username, password and domain in `MONGO_USER`, `MONGO_PASS` and `MONGO_DOMAIN` respectively.  
 
 <!-- screenshot db image? -->
+A visual representation of the cluster within MongoDB
+![mongodb db visual-2](https://user-images.githubusercontent.com/13199349/83800877-76702900-a6a8-11ea-88e1-225ff91a9243.jpg)
+
+To read a more indepth explanation over the use of mongodb and why I use mongoDB:
+[Read the wiki page about database and sessions](https://github.com/dewarian/bt-dating-app/wiki/Backend-Week-4/)
 
 ## Start the server.
-```
-$ npm run start
-```
+>$`npm run start`
+
 Your node application should now work, check with the terminal to make sure.  
 **...and Voila, you should have a working copy of this repo.**
 
