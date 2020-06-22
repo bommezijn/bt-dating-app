@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - node
+  - lts/*
+  - 10
+cache: npm
+deploy:
+  provider: heroku
+  api_key:
+    secure: LuSlOrIW28ZYp8GnLqb0lIaHdfwkN6rn1ZUvQBV7TP3jjoIkXsp2u/crwx+HcFbE09pUiTTLwDWunjDwc1WWoa1kCjj9ZlhIXe4T4f/avnXSaucIVVrX6xvsgf10yMeaklPXMXAUk5oZ+jjT5quzHLVBfbTJ5eJnZMewzNWkoCLjhbglr/naoAtYT5pm4IADHMWcXP4JPVbLV19xF1nCf5eVkA9DO/DQQNNWoiNVdovawqhibFLFiIJFUYU27Sm67/yWOj1/Se2piSxDTNDqttzJMhi/YO2dIM87Bfbfn4bUrW2hdpLaTi8y78TC+g7CGa3qDqmetk2/Al9c2/Ig5+WO+ZXbdv332V+O46UJPD+RUT+kVB/FNvWY37NlpN1XIQurPcil2AlUTUuHHrwIN1tIGp7Ca63y6/F6yt4cTEmYA3YDFrczdxd/xNcWy6MjyElrhcuVyo/AvVDL2aVzhsCn3Wt/8Lu+Mb+IqbZkB1mhEvLiM2+djeH4rHGlFGhys5Gfn1daEOC/YUg4LjmJxcXdYwDLHOmwaRs/fGjICiLHua+86xsT1ayquU8OLvFgWq43pF54THP1En4Qxmkr4/6sCuDQNyviUyGyDWROX5oMSwSq36i6tFOeHDpedsjaGWsq8jV4oJZ1+BDb0wSPiiqZvJE05ykpAPSigb62Fuc=
+    app: nbmp-dating
