@@ -1,4 +1,5 @@
-# bt-dating-app
+# bt-dating-app 
+[![Build Status](https://travis-ci.org/dewarian/bt-dating-app.svg?branch=master)](https://travis-ci.org/dewarian/bt-dating-app)
 > Sort your future matches by movie genre 😉
 
 The dating app from CMD Blok Tech. Find a match for everyone.  
