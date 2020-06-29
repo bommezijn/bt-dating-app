@@ -29,7 +29,10 @@
     <br>
     <label for="">Movie Genres</label><br>
     <% for( let index = 0; index < result.genre.length; index++ ) { %>
-      <label for="action"><input type="checkbox" name="movieGenre" id="<%= result.genre[index] %> " value="<%= result.genre[index] %> "> <%= result.genre[index] %> </label><br>
+      <% if ((index % 5 == 0)) { %>
+        <br>
+       <% } %>
+      <label for="<%= result.genre[index] %>" class="genre-choice"><input type="checkbox" name="movieGenre" id="<%= result.genre[index] %>" value="<%= result.genre[index] %>"> <%= result.genre[index] %> </label>
     <% } %>
   </fieldset>
   <button type="submit">Add User</button>

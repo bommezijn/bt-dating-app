@@ -16,10 +16,10 @@
     <% } %>
     <% Object.entries(filterData).forEach(([key, value]) => { %>
         <article class="userCard">
-          <p>name: <%= value.name %> </p>
-          <p>age: <%= value.age %> </p>
-          <p>Is: <%= value.gender %> </p>
-          <p>genres: <%= value.movieGenre %> </p>
+          <p>name: <span class="userName"><%= value.name %></span> </p>
+          <p>age: <span class="userAge"><%= value.age %></span> </p>
+          <p>Is: <span class="userGender"><%= value.gender %></span> </p>
+          <p>genres: <span class="userMovies"><%= value.movieGenre %></span>  </p>
         </article>
         <% }) %>
     </main>

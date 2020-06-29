@@ -1,4 +1,5 @@
-<form action="/feature" method="POST" oninput="displayMinAge.value = minAge.valueAsNumber; displayMaxAge.value = maxAge.valueAsNumber; setDistance.value = distance.valueAsNumber">
+<form action="/feature" method="POST" oninput="displayMinAge.value = minAge.valueAsNumber; displayMaxAge.value = maxAge.valueAsNumber; readChange(sexualPreference)" name="filterForm"
+>
   <fieldset>
     <legend>Preferences</legend>
     <fieldset>
@@ -7,7 +8,7 @@
         Between <output name="displayMinAge">18</output> and <output name="displayMaxAge">28</output>
       </label> <br>
       <label for="minAge">min : </label>
-      <input type="range" name="minAge" id="preferedAge" value="18" min="18" max="60" step="1">
+      <input type="range" name="minAge" id="preferedAge" value="18" min="18" max="99" step="1">
       <br>
       <label for="maxAge">max: </label>
       <input type="range" name="maxAge" id="preferedAge" min="18" max="60" step="1" value="28">

@@ -143,3 +143,7 @@ footer{
     width: calc(100% - 1em);
     margin-top: auto;
 }
+
+.genre-choice{
+    margin-right: 1em;
+}
