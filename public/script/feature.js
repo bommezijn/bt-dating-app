@@ -47,7 +47,7 @@ function readChange(elementList) {
         // female logic
         console.log(`entering logic: female`);
         Array.from(users).forEach((elem) => {
-          elem.style.opacity = 1;
+          elem.style.display = 'block';
           const userGender = elem.querySelectorAll('.userGender')[0].innerText;
           console.log(userGender);
           if (userGender !== 'female') {
@@ -58,7 +58,7 @@ function readChange(elementList) {
         // male logic
         console.log(`entering logic: male`);
         Array.from(users).forEach((elem) => {
-          elem.style.opacity = 1;
+          elem.style.display = 'block';
 
           const userGender = elem.querySelectorAll('.userGender')[0].innerText;
           console.log(userGender);
@@ -70,7 +70,7 @@ function readChange(elementList) {
         // other logic
         console.log(`entering logic: other`);
         Array.from(users).forEach((elem) => {
-          elem.style.opacity = 1;
+          elem.style.display = 1;
 
           const userGender = elem.querySelectorAll('.userGender')[0].innerText;
           console.log(userGender);
