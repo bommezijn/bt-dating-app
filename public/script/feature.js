@@ -1,9 +1,6 @@
 /* eslint-disable max-len */
-console.log(`hello`);
-
 const sexualPreference = document.forms['filterForm'].elements['sexPref'];
 const users = document.getElementsByClassName('userCard');
-// const userGender = document.querySelectorAll('.userGender');
 
 /**
  * @title readChange from element
@@ -34,7 +31,7 @@ function readChange(elementList) {
       } else {
         // other logic
         Array.from(users).forEach((elem) => {
-          elem.style.display = 1;
+          elem.style.display = 'block';
           const userGender = elem.querySelectorAll('.userGender')[0].innerText;
           if (userGender !== 'other') {
             elem.style.display = 'none';
